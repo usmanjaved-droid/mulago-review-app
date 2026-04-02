@@ -3393,8 +3393,24 @@ document.addEventListener('keydown', e => {
 });
 
 // --- INIT ---
+const DEFAULT_REVIEWERS = [
+  { slot: 1, name: 'Usman Javed' },
+  { slot: 2, name: 'Haroon Yasin' },
+  { slot: 3, name: 'Sabeena Abbasi' },
+  { slot: 4, name: 'Sarah Farooq' },
+];
+
 async function init() {
   await loadFromDb();
+
+  // Seed default reviewers for any empty slots
+  for (const r of DEFAULT_REVIEWERS) {
+    if (!reviewers[r.slot]) {
+      await sb.from('reviewers').upsert({ slot: r.slot, name: r.name });
+      reviewers[r.slot] = r;
+    }
+  }
+
   subscribeRealtime();
 
   // Restore saved reviewer identity from localStorage
