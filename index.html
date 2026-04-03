@@ -186,6 +186,7 @@
   .nav-stat-label { font-size: 0.65rem; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.05em; }
 
   /* LAYOUT */
+  body { overflow-x: hidden; }
   .layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 60px); }
 
   /* SIDEBAR */
@@ -351,9 +352,10 @@
 
   /* META GRID */
   .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.625rem; margin-bottom: 1.75rem; }
-  .meta-item { background: var(--surface-container-low); border-radius: 0.5rem; padding: 0.75rem 0.875rem; border: 1px solid rgba(169,180,185,0.1); }
+  .meta-item { background: var(--surface-container-low); border-radius: 0.5rem; padding: 0.75rem 0.875rem; border: 1px solid rgba(169,180,185,0.1); overflow: hidden; }
   .meta-item-label { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--on-surface-variant); font-weight: 700; margin-bottom: 4px; }
-  .meta-item-val { font-size: 0.9375rem; font-weight: 700; color: var(--on-surface); font-family: 'Manrope', sans-serif; }
+  .meta-item-val { font-size: 0.9375rem; font-weight: 700; color: var(--on-surface); font-family: 'Manrope', sans-serif; max-height: 4.5rem; overflow-y: auto; word-break: break-word; }
+  .meta-item-val a { word-break: break-all; }
 
   /* REACH CALLOUT */
   .reach-callout {
@@ -2728,9 +2730,7 @@ function getFilteredSorted() {
     list = list.filter(a =>
       a.name.toLowerCase().includes(q) ||
       a.org.toLowerCase().includes(q) ||
-      a.sector.toLowerCase().includes(q) ||
-      a.problem.toLowerCase().includes(q) ||
-      a.solution.toLowerCase().includes(q)
+      a.sector.toLowerCase().includes(q)
     );
   }
 
@@ -3247,6 +3247,20 @@ function renderScoreButtons(dim, canScore = true) {
           renderScoreButtons(dim, true);
           updateEvalSummary();
           highlightGuideRow(dim, i);
+          // Scroll the eval panel so the score buttons for this dimension stay visible
+          const updatedContainer = document.querySelector(`.score-buttons[data-dim="${dim}"]`);
+          if (updatedContainer) {
+            const evalPanel = document.querySelector('.panel-eval');
+            if (evalPanel) {
+              const btnTop = updatedContainer.getBoundingClientRect().top;
+              const panelTop = evalPanel.getBoundingClientRect().top;
+              const btnBottom = updatedContainer.getBoundingClientRect().bottom;
+              const panelBottom = evalPanel.getBoundingClientRect().bottom;
+              if (btnBottom > panelBottom || btnTop < panelTop) {
+                updatedContainer.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+              }
+            }
+          }
         };
         btn.onmouseenter = () => {
           if (block && block.classList.contains('expanded')) highlightGuideRow(dim, i);
