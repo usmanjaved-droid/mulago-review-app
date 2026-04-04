@@ -2583,6 +2583,10 @@ const SUPABASE_URL = 'https://wzvvylqxibsghpkmkfka.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6dnZ5bHF4aWJzZ2hwa21rZmthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMzE5MzMsImV4cCI6MjA5MDcwNzkzM30.DIm4eFeo5-G-6_kpd1Fuybex59E-s3KrmxeWJgMUw7U';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+// --- PRESENCE STATE ---
+let presenceChannel = null;
+let presenceState = {}; // { slot -> { name, viewing } }
+
 // --- STATE ---
 let evals = {};           // applicant_id -> eval object
 let assignments = {};     // applicant_id -> slot number
@@ -2661,6 +2665,43 @@ function subscribeRealtime() {
       }
     })
     .subscribe();
+}
+
+function initPresence() {
+  if (presenceChannel) presenceChannel.unsubscribe();
+  presenceChannel = sb.channel('reviewer-presence', {
+    config: { presence: { key: currentReviewer ? String(currentReviewer.slot) : 'anon' } }
+  });
+
+  presenceChannel
+    .on('presence', { event: 'sync' }, () => {
+      const state = presenceChannel.presenceState();
+      presenceState = {};
+      Object.values(state).forEach(presences => {
+        presences.forEach(p => {
+          if (p.slot) presenceState[p.slot] = { name: p.name, viewing: p.viewing || null };
+        });
+      });
+      renderSetupSlots();
+    })
+    .subscribe(async status => {
+      if (status === 'SUBSCRIBED' && currentReviewer) {
+        await presenceChannel.track({
+          slot: currentReviewer.slot,
+          name: currentReviewer.name,
+          viewing: currentApplicant ? currentApplicant.org : null
+        });
+      }
+    });
+}
+
+async function broadcastPresence(viewing) {
+  if (!presenceChannel || !currentReviewer) return;
+  await presenceChannel.track({
+    slot: currentReviewer.slot,
+    name: currentReviewer.name,
+    viewing: viewing || null
+  });
 }
 
 function totalScore(id) {
@@ -2850,11 +2891,25 @@ function renderSetupSlots() {
   wrap.innerHTML = [1,2,3,4,5,6].map(slot => {
     const r = reviewers[slot];
     const name = r ? r.name : '—';
-    return `<div class="reviewer-row">
+    const presence = r ? presenceState[slot] : null;
+    const isActive = !!presence;
+    const dotHtml = r ? `<span style="
+      display:inline-block;width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-right:2px;
+      background:${isActive ? '#22c55e' : '#ef4444'};
+      box-shadow:0 0 0 2px ${isActive ? '#dcfce7' : '#fee2e2'};
+    " title="${isActive ? 'Active' : 'Offline'}"></span>` : '';
+    const viewingHtml = isActive && presence.viewing
+      ? `<div style="font-size:0.72rem;color:var(--on-surface-variant);margin-top:2px;padding-left:60px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">👁 ${presence.viewing}</div>`
+      : '';
+    return `<div class="reviewer-row" style="flex-wrap:wrap">
       <div class="reviewer-slot-label">Slot ${slot}</div>
-      <input class="reviewer-input" type="text" id="reviewer-input-${slot}"
-        value="${name}" readonly
-        style="${r ? 'background:#f0f5ff;font-weight:600;cursor:default' : 'cursor:default;color:var(--on-surface-variant)'}">
+      <div style="flex:1;display:flex;align-items:center;gap:6px;">
+        ${dotHtml}
+        <input class="reviewer-input" type="text" id="reviewer-input-${slot}"
+          value="${name}" readonly
+          style="${r ? 'background:#f0f5ff;font-weight:600;cursor:default' : 'cursor:default;color:var(--on-surface-variant)'}">
+      </div>
+      ${viewingHtml}
     </div>`;
   }).join('');
 }
@@ -2982,6 +3037,7 @@ function selectReviewer(slot) {
   renderNavIdentity();
   renderTable();
   renderReviewerFilterBtns();
+  initPresence();
 }
 
 function renderNavIdentity() {
@@ -3018,6 +3074,7 @@ function openPanel(id) {
   const a = APPLICANTS.find(x => x.id === id);
   if (!a) return;
   currentApplicant = a;
+  broadcastPresence(a.org);
 
   document.getElementById('p-name').textContent = a.name;
   document.getElementById('p-role').textContent = a.title;
@@ -3192,6 +3249,7 @@ function closePanel() {
   document.getElementById('panel').classList.remove('open');
   document.body.style.overflow = '';
   currentApplicant = null;
+  broadcastPresence(null);
 }
 
 // --- EVAL ---
@@ -3418,6 +3476,7 @@ async function init() {
   renderReviewerFilterBtns();
   renderReviewerProgress();
   toggleAssignedColHeader();
+  initPresence();
 
   // Show name picker if reviewers exist but identity not set
   if (Object.keys(reviewers).length > 0 && !currentReviewer) {
