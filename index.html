@@ -2864,7 +2864,7 @@ function closeSetupModal() {
 
 function renderSetupSlots() {
   const wrap = document.getElementById('reviewer-slots');
-  wrap.innerHTML = [1,2,3,4].map(slot => {
+  wrap.innerHTML = [1,2,3,4,5,6].map(slot => {
     const r = reviewers[slot];
     const name = r ? r.name : '';
     return `<div class="reviewer-row">
@@ -2886,7 +2886,7 @@ async function assignAndSave() {
 
   // Read names from inputs
   const newReviewers = [];
-  for (let slot = 1; slot <= 4; slot++) {
+  for (let slot = 1; slot <= 6; slot++) {
     const name = document.getElementById(`reviewer-input-${slot}`).value.trim();
     if (name) newReviewers.push({ slot, name });
   }
@@ -2911,15 +2911,15 @@ async function assignAndSave() {
       const j = Math.floor(Math.random() * (i + 1));
       [unassigned[i], unassigned[j]] = [unassigned[j], unassigned[i]];
     }
-    // Divide among 4 slots (filled or not), assign only to filled slots
-    const total = APPLICANTS.length;
-    const slotSize = Math.floor(total / 4);
-    const extras = total % 4;
+    // Divide among filled slots
+    const filledSlots = newReviewers.map(r => r.slot);
+    const total = unassigned.length;
+    const slotSize = Math.floor(total / filledSlots.length);
+    const extras = total % filledSlots.length;
     let idx = 0;
-    for (let s = 1; s <= 4; s++) {
-      const count = slotSize + (s <= extras ? 1 : 0);
-      const reviewer = reviewers[s];
-      if (!reviewer) { idx += count; continue; }
+    for (let si = 0; si < filledSlots.length; si++) {
+      const s = filledSlots[si];
+      const count = slotSize + (si < extras ? 1 : 0);
       const batch = unassigned.slice(idx, idx + count);
       for (const a of batch) {
         await sb.from('assignments').upsert({ applicant_id: String(a.id), slot: s });
@@ -3412,16 +3412,47 @@ const DEFAULT_REVIEWERS = [
   { slot: 2, name: 'Haroon Yasin' },
   { slot: 3, name: 'Sabeena Abbasi' },
   { slot: 4, name: 'Sarah Farooq' },
+  { slot: 5, name: 'Sania Salman' },
+  { slot: 6, name: 'Nadir Shams' },
 ];
 
 async function init() {
   await loadFromDb();
 
   // Seed default reviewers for any empty slots
+  let reviewerCountBefore = Object.keys(reviewers).length;
   for (const r of DEFAULT_REVIEWERS) {
     if (!reviewers[r.slot]) {
       await sb.from('reviewers').upsert({ slot: r.slot, name: r.name });
       reviewers[r.slot] = r;
+    }
+  }
+  // If new reviewers were added, wipe all assignments + evaluations and redistribute
+  if (Object.keys(reviewers).length > reviewerCountBefore) {
+    await sb.from('assignments').delete().neq('applicant_id', '');
+    await sb.from('evaluations').delete().neq('applicant_id', '');
+    Object.keys(assignments).forEach(k => delete assignments[k]);
+    evals = {};
+    // Redistribute all 38 apps across all filled slots
+    const allApps = [...APPLICANTS];
+    for (let i = allApps.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allApps[i], allApps[j]] = [allApps[j], allApps[i]];
+    }
+    const filledSlots = Object.values(reviewers).map(r => r.slot);
+    const total = allApps.length;
+    const slotSize = Math.floor(total / filledSlots.length);
+    const extras = total % filledSlots.length;
+    let idx = 0;
+    for (let si = 0; si < filledSlots.length; si++) {
+      const s = filledSlots[si];
+      const count = slotSize + (si < extras ? 1 : 0);
+      const batch = allApps.slice(idx, idx + count);
+      for (const a of batch) {
+        await sb.from('assignments').upsert({ applicant_id: String(a.id), slot: s });
+        assignments[String(a.id)] = s;
+      }
+      idx += count;
     }
   }
 
