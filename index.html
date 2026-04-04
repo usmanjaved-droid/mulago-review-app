@@ -676,10 +676,9 @@
 <!-- REVIEWER SETUP MODAL -->
 <div class="modal-backdrop" id="setup-modal">
   <div class="modal">
-    <div class="modal-title">Reviewer Setup</div>
-    <div class="modal-sub">Enter up to 4 reviewer names. Hit "Assign &amp; Save" to randomly divide the 38 applications. Removing a reviewer clears their assignments and scores.</div>
+    <div class="modal-title">Reviewers</div>
+    <div class="modal-sub">Applications have been assigned. Reviewer setup is locked.</div>
     <div id="reviewer-slots"></div>
-    <button class="modal-btn" id="setup-assign-btn" onclick="assignAndSave()">Assign &amp; Save</button>
     <button class="modal-btn-secondary" onclick="closeSetupModal()">Close</button>
   </div>
 </div>
@@ -2925,15 +2924,12 @@ function renderSetupSlots() {
   const wrap = document.getElementById('reviewer-slots');
   wrap.innerHTML = [1,2,3,4,5,6].map(slot => {
     const r = reviewers[slot];
-    const name = r ? r.name : '';
+    const name = r ? r.name : '—';
     return `<div class="reviewer-row">
       <div class="reviewer-slot-label">Slot ${slot}</div>
       <input class="reviewer-input" type="text" id="reviewer-input-${slot}"
-        value="${name}" placeholder="Reviewer name…"
-        ${r ? 'style="background:#f0f5ff;font-weight:600"' : ''}>
-      <button class="reviewer-remove-btn" title="Remove reviewer"
-        onclick="removeReviewer(${slot})"
-        ${!r ? 'disabled' : ''}>✕</button>
+        value="${name}" readonly
+        style="${r ? 'background:#f0f5ff;font-weight:600;cursor:default' : 'cursor:default;color:var(--on-surface-variant)'}">
     </div>`;
   }).join('');
 }
