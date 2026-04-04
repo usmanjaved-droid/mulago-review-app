@@ -785,7 +785,6 @@
             <th onclick="sortBy('sector')">Sector <span class="sort-icon">↕</span></th>
             <th onclick="sortBy('budget')">Budget <span class="sort-icon">↕</span></th>
             <th onclick="sortBy('team')">Team <span class="sort-icon">↕</span></th>
-            <th>Stage</th>
             <th>Score</th>
             <th>Status</th>
             <th id="assigned-col-header" style="display:none">Assigned To</th>
@@ -2853,7 +2852,6 @@ function renderTable() {
       <td><span class="sector-tag sector-tag-${a.sector.toLowerCase().replace(/[^a-z]/g,'-')}">${a.sector}</span></td>
       <td><span class="budget-text">${budgetStr}</span></td>
       <td><span class="team-text">${a.team}</span></td>
-      <td><span class="stage-text">${a.stage === 'Yes, I am the founder' ? 'Founder' : a.stage === 'No' ? 'Non-founder' : a.stage}</span></td>
       <td>${scoreCell}</td>
       <td>${renderBadge(ev.status)}</td>
       ${assignedCell}
