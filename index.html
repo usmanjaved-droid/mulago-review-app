@@ -2753,6 +2753,9 @@ function setFilter(type, value) {
       if (match) btn.classList.toggle('active', match[1] === value);
     });
   }
+  if (type === 'reviewer') {
+    renderReviewerFilterBtns();
+  }
   renderTable();
 }
 
