@@ -634,11 +634,11 @@
 <nav class="nav">
   <div>
     <div class="nav-brand">Mulago Scale-Up Fellowship 2026</div>
-    <div class="nav-sub">June 6–12 · Application Review System</div>
+    <div class="nav-sub">Application Review System</div>
   </div>
   <div class="nav-right">
     <div class="nav-stat">
-      <div class="nav-stat-val" id="nav-total">38</div>
+      <div class="nav-stat-val" id="nav-total">39</div>
       <div class="nav-stat-label">Total Apps</div>
     </div>
     <div class="nav-stat">
@@ -3008,6 +3008,7 @@ function updateStats() {
     counts[s] = (counts[s] || 0) + 1;
   });
 
+  document.getElementById('nav-total').textContent = APPLICANTS.length;
   document.getElementById('nav-shortlisted').textContent = counts.shortlisted;
   document.getElementById('nav-reviewed').textContent = counts.review;
 }
