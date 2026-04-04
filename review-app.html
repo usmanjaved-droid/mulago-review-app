@@ -2893,11 +2893,14 @@ function renderSetupSlots() {
     const name = r ? r.name : '—';
     const presence = r ? presenceState[slot] : null;
     const isActive = !!presence;
+    const hasSeen = r && r.last_seen;
+    const dotColor = isActive ? '#22c55e' : hasSeen ? '#ef4444' : '#6b7280';
+    const dotRing = isActive ? '#dcfce7' : hasSeen ? '#fee2e2' : '#e5e7eb';
+    const dotTitle = isActive ? 'Active now' : hasSeen ? 'Offline' : 'Never logged in';
     const dotHtml = r ? `<span style="
       display:inline-block;width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-right:2px;
-      background:${isActive ? '#22c55e' : '#ef4444'};
-      box-shadow:0 0 0 2px ${isActive ? '#dcfce7' : '#fee2e2'};
-    " title="${isActive ? 'Active' : 'Offline'}"></span>` : '';
+      background:${dotColor};box-shadow:0 0 0 2px ${dotRing};
+    " title="${dotTitle}"></span>` : '';
     const viewingHtml = isActive && presence.viewing
       ? `<div style="font-size:0.72rem;color:var(--on-surface-variant);margin-top:2px;padding-left:60px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">👁 ${presence.viewing}</div>`
       : '';
@@ -3030,7 +3033,7 @@ function renderNamePickerOptions() {
   }).join('');
 }
 
-function selectReviewer(slot) {
+async function selectReviewer(slot) {
   currentReviewer = reviewers[slot];
   localStorage.setItem('mulago_reviewer', JSON.stringify(currentReviewer));
   document.getElementById('name-modal').classList.remove('open');
@@ -3038,6 +3041,10 @@ function selectReviewer(slot) {
   renderTable();
   renderReviewerFilterBtns();
   initPresence();
+  // Record that this reviewer has been seen
+  const now = new Date().toISOString();
+  await sb.from('reviewers').update({ last_seen: now }).eq('slot', slot);
+  reviewers[slot].last_seen = now;
 }
 
 function renderNavIdentity() {
