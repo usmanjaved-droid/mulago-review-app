@@ -752,8 +752,7 @@
       <button class="filter-btn" onclick="setFilter('sector','Livelihoods')">Livelihoods</button>
       <button class="filter-btn" onclick="setFilter('sector','Environment')">Environment</button>
       <button class="filter-btn" onclick="setFilter('sector','Women & Girls')">Women &amp; Girls</button>
-      <button class="filter-btn" onclick="setFilter('sector','Tech & Innovation')">Tech &amp; Innovation</button>
-      <button class="filter-btn" onclick="setFilter('sector','Youth')">Youth</button>
+<button class="filter-btn" onclick="setFilter('sector','Youth')">Youth</button>
       <button class="filter-btn" onclick="setFilter('sector','Disability')">Disability</button>
     </div>
   </aside>
@@ -2748,6 +2747,12 @@ function setFilter(type, value) {
       if (btn) btn.classList.toggle('active', s === value);
     });
   }
+  if (type === 'sector') {
+    document.querySelectorAll('.sidebar-section .filter-btn[onclick*="sector"]').forEach(btn => {
+      const match = btn.getAttribute('onclick').match(/setFilter\('sector','(.*)'\)/);
+      if (match) btn.classList.toggle('active', match[1] === value);
+    });
+  }
   renderTable();
 }
 
@@ -2789,6 +2794,8 @@ function getFilteredSorted() {
     if (sort === 'org') return a.org.localeCompare(b.org);
     if (sort === 'budget') return b.budget - a.budget;
     if (sort === 'score') return totalScore(b.id).total - totalScore(a.id).total;
+    if (sort === 'sector') return a.sector.localeCompare(b.sector);
+    if (sort === 'team') return b.team - a.team;
     return a.id - b.id;
   });
 
