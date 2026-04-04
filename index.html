@@ -187,43 +187,24 @@
 
   /* LAYOUT */
   body { overflow-x: hidden; }
-  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 60px); }
+  .layout { min-height: calc(100vh - 60px); }
 
-  /* SIDEBAR */
-  .sidebar {
+  /* FILTER BAR */
+  .filter-bar { display: flex; gap: 0.625rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .filter-select {
+    padding: 0.5rem 0.75rem;
     background: var(--surface-container-lowest);
-    padding: 1.75rem 1.5rem;
-    border-right: 1px solid rgba(169,180,185,0.12);
-    position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto;
+    border: 1.5px solid rgba(169,180,185,0.3); border-radius: 0.375rem;
+    font-size: 0.8125rem; font-family: 'Inter', sans-serif; color: var(--on-surface);
+    outline: none; cursor: pointer; transition: border-color 0.15s;
   }
-  .sidebar-section { margin-bottom: 2rem; }
-  .sidebar-label { font-size: 0.6875rem; font-weight: 600; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem; }
-  .stat-card {
-    background: var(--surface-container);
-    border-radius: 0.5rem;
-    padding: 0.875rem 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .stat-card-val { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--on-surface); }
-  .stat-card-label { font-size: 0.75rem; color: var(--on-surface-variant); margin-top: 2px; }
-  .filter-group { margin-bottom: 1rem; }
-  .filter-label { font-size: 0.75rem; color: var(--on-surface-variant); margin-bottom: 0.4rem; display: block; }
-  .filter-btn {
-    display: flex; align-items: center; gap: 0.5rem;
-    width: 100%; padding: 0.5rem 0.75rem;
-    background: transparent; border: none; cursor: pointer;
-    border-radius: 0.375rem; font-size: 0.8125rem; color: var(--on-surface-variant);
-    font-family: 'Inter', sans-serif; text-align: left;
-    transition: background 0.15s;
-  }
-  .filter-btn:hover { background: var(--surface-container); }
-  .filter-btn.active { background: var(--primary-container); color: var(--on-primary-container); font-weight: 600; }
-  .filter-btn .count {
-    margin-left: auto; font-size: 0.7rem; font-weight: 600;
-    background: var(--surface-container-high); color: var(--on-surface-variant);
-    border-radius: 10px; padding: 1px 7px;
-  }
-  .filter-btn.active .count { background: rgba(58,95,148,0.15); color: var(--primary); }
+  .filter-select:hover { border-color: var(--outline-variant); }
+  .filter-select.active { border-color: var(--primary); background: var(--primary-container); color: var(--on-primary-container); font-weight: 600; }
+
+  /* REVIEWER PROGRESS */
+  .progress-bar-section { margin-bottom: 1.5rem; }
+  .progress-bar-section-label { font-size: 0.6875rem; font-weight: 600; color: var(--on-surface-variant); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.75rem; }
+  .reviewer-progress-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.625rem; }
 
   /* MAIN */
   .main { padding: 2rem 2.25rem; }
@@ -640,11 +621,11 @@
   a.org-link:hover { text-decoration: underline; }
 
   @media (max-width: 900px) {
-    .layout { grid-template-columns: 1fr; }
-    .sidebar { position: static; height: auto; }
     .meta-grid { grid-template-columns: repeat(2,1fr); }
     .panel-body { grid-template-columns: 1fr; }
     .panel-content { border-right: none; border-bottom: 1px solid rgba(169,180,185,0.12); }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+    .filter-select { width: 100%; }
   }
 </style>
 </head>
@@ -693,77 +674,35 @@
 </div>
 
 <div class="layout">
-  <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-label">Progress</div>
-      <div class="stat-card">
-        <div class="stat-card-val" id="stat-pending">38</div>
-        <div class="stat-card-label">Pending review</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-val" id="stat-scored">0</div>
-        <div class="stat-card-label">Scored</div>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">Filter by Status</div>
-      <button class="filter-btn active" onclick="setFilter('status','all')" id="filter-all">
-        All
-        <span class="count" id="count-all">38</span>
-      </button>
-      <button class="filter-btn" onclick="setFilter('status','pending')" id="filter-pending">
-        Pending
-        <span class="count" id="count-pending">38</span>
-      </button>
-      <button class="filter-btn" onclick="setFilter('status','review')" id="filter-review">
-        In Review
-        <span class="count" id="count-review">0</span>
-      </button>
-      <button class="filter-btn" onclick="setFilter('status','shortlisted')" id="filter-shortlisted">
-        ★ Shortlisted
-        <span class="count" id="count-shortlisted">0</span>
-      </button>
-      <button class="filter-btn" onclick="setFilter('status','rejected')" id="filter-rejected">
-        ✕ Rejected
-        <span class="count" id="count-rejected">0</span>
-      </button>
-    </div>
-
-    <div class="sidebar-section" id="reviewer-filter-section" style="display:none">
-      <div class="sidebar-label">Filter by Reviewer</div>
-      <div id="reviewer-filter-btns"></div>
-    </div>
-
-    <div class="sidebar-section" id="reviewer-progress-section" style="display:none">
-      <div class="sidebar-label">Reviewer Progress</div>
-      <div class="reviewer-progress" id="reviewer-progress"></div>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">Filter by Sector</div>
-      <button class="filter-btn" onclick="setFilter('sector','all')" id="filter-sector-all">
-        All Sectors
-      </button>
-      <button class="filter-btn" onclick="setFilter('sector','Education')">Education</button>
-      <button class="filter-btn" onclick="setFilter('sector','Health')">Health</button>
-      <button class="filter-btn" onclick="setFilter('sector','Mental Health')">Mental Health</button>
-      <button class="filter-btn" onclick="setFilter('sector','Livelihoods')">Livelihoods</button>
-      <button class="filter-btn" onclick="setFilter('sector','Environment')">Environment</button>
-      <button class="filter-btn" onclick="setFilter('sector','Women & Girls')">Women &amp; Girls</button>
-<button class="filter-btn" onclick="setFilter('sector','Youth')">Youth</button>
-      <button class="filter-btn" onclick="setFilter('sector','Disability')">Disability</button>
-    </div>
-  </aside>
-
   <main class="main">
     <div class="main-header">
       <div class="main-title">Applications</div>
       <div class="main-sub">Click any row to view full application and evaluate</div>
     </div>
 
-    <div class="controls">
-      <div class="search-wrap">
+    <div class="filter-bar">
+      <select class="filter-select" id="filter-status-select" onchange="setFilter('status', this.value)">
+        <option value="all">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="review">In Review</option>
+        <option value="shortlisted">★ Shortlisted</option>
+        <option value="rejected">✕ Rejected</option>
+      </select>
+      <select class="filter-select" id="filter-sector-select" onchange="setFilter('sector', this.value)">
+        <option value="all">All Sectors</option>
+        <option value="Education">Education</option>
+        <option value="Health">Health</option>
+        <option value="Mental Health">Mental Health</option>
+        <option value="Livelihoods">Livelihoods</option>
+        <option value="Environment">Environment</option>
+        <option value="Women & Girls">Women &amp; Girls</option>
+        <option value="Youth">Youth</option>
+        <option value="Disability">Disability</option>
+      </select>
+      <select class="filter-select" id="filter-reviewer-select" onchange="setFilter('reviewer', this.value)" style="display:none">
+        <option value="all">All Reviewers</option>
+      </select>
+      <div class="search-wrap" style="flex:1;min-width:200px">
         <span class="search-icon" style="font-style:normal">🔍</span>
         <input class="search-input" type="text" id="search-input" placeholder="Search by name, org, sector…" oninput="renderTable()">
       </div>
@@ -775,6 +714,11 @@
         <option value="score">Sort: Score</option>
       </select>
       <span class="results-count" id="results-count">38 results</span>
+    </div>
+
+    <div class="progress-bar-section" id="reviewer-progress-section" style="display:none">
+      <div class="progress-bar-section-label">Reviewer Progress</div>
+      <div class="reviewer-progress-grid" id="reviewer-progress"></div>
     </div>
 
     <div class="table-wrap">
@@ -2738,21 +2682,12 @@ function totalScore(id) {
 // --- FILTER & SORT ---
 function setFilter(type, value) {
   currentFilter[type] = value;
-  // Update button styles
-  if (type === 'status') {
-    ['all','pending','review','shortlisted','rejected'].forEach(s => {
-      const btn = document.getElementById('filter-' + s);
-      if (btn) btn.classList.toggle('active', s === value);
-    });
-  }
-  if (type === 'sector') {
-    document.querySelectorAll('.sidebar-section .filter-btn[onclick*="sector"]').forEach(btn => {
-      const match = btn.getAttribute('onclick').match(/setFilter\('sector','(.*)'\)/);
-      if (match) btn.classList.toggle('active', match[1] === value);
-    });
-  }
-  if (type === 'reviewer') {
-    renderReviewerFilterBtns();
+  // Sync dropdown value
+  const selectMap = { status: 'filter-status-select', sector: 'filter-sector-select', reviewer: 'filter-reviewer-select' };
+  const sel = document.getElementById(selectMap[type]);
+  if (sel) {
+    sel.value = value;
+    sel.classList.toggle('active', value !== 'all');
   }
   renderTable();
 }
@@ -2867,23 +2802,23 @@ function toggleAssignedColHeader() {
 }
 
 function renderReviewerFilterBtns() {
-  const section = document.getElementById('reviewer-filter-section');
-  const wrap = document.getElementById('reviewer-filter-btns');
+  const sel = document.getElementById('filter-reviewer-select');
   const slots = Object.values(reviewers);
-  if (!slots.length) { section.style.display = 'none'; return; }
-  section.style.display = '';
+  if (!slots.length) { sel.style.display = 'none'; return; }
+  sel.style.display = '';
 
-  const btns = [{ label: 'All', value: 'all' }];
-  slots.forEach(r => btns.push({ label: r.name, value: String(r.slot) }));
-  if (currentReviewer) btns.push({ label: 'My Apps', value: String(currentReviewer.slot) });
-
-  wrap.innerHTML = slots.map(r => {
+  // Rebuild options
+  let html = `<option value="all">All Reviewers</option>`;
+  slots.forEach(r => {
     const count = APPLICANTS.filter(a => assignments[String(a.id)] === r.slot).length;
-    const isCurrent = currentFilter.reviewer === String(r.slot);
-    return `<button class="filter-btn${isCurrent ? ' active' : ''}" onclick="setFilter('reviewer','${r.slot}')">
-      ${r.name} <span class="count">${count}</span>
-    </button>`;
-  }).join('') + `<button class="filter-btn${currentFilter.reviewer === 'all' ? ' active' : ''}" onclick="setFilter('reviewer','all')">All</button>`;
+    html += `<option value="${r.slot}">${r.name} (${count})</option>`;
+  });
+  if (currentReviewer) {
+    html += `<option value="${currentReviewer.slot}">⭐ My Apps</option>`;
+  }
+  sel.innerHTML = html;
+  sel.value = currentFilter.reviewer;
+  sel.classList.toggle('active', currentFilter.reviewer !== 'all');
 }
 
 function renderReviewerProgress() {
@@ -3080,18 +3015,9 @@ function updateStats() {
     const s = getEval(a.id).status;
     counts[s] = (counts[s] || 0) + 1;
   });
-  const scored = APPLICANTS.filter(a => totalScore(a.id).scored > 0).length;
 
   document.getElementById('nav-shortlisted').textContent = counts.shortlisted;
   document.getElementById('nav-reviewed').textContent = counts.review;
-  document.getElementById('stat-pending').textContent = counts.pending;
-  document.getElementById('stat-scored').textContent = scored;
-
-  document.getElementById('count-all').textContent = APPLICANTS.length;
-  document.getElementById('count-pending').textContent = counts.pending;
-  document.getElementById('count-review').textContent = counts.review;
-  document.getElementById('count-shortlisted').textContent = counts.shortlisted;
-  document.getElementById('count-rejected').textContent = counts.rejected;
 }
 
 // --- PANEL ---
