@@ -3471,47 +3471,16 @@ const DEFAULT_REVIEWERS = [
   { slot: 2, name: 'Haroon Yasin' },
   { slot: 3, name: 'Sabeena Abbasi' },
   { slot: 4, name: 'Sarah Farooq' },
-  { slot: 5, name: 'Sania Salman' },
-  { slot: 6, name: 'Nadir Shams' },
 ];
 
 async function init() {
   await loadFromDb();
 
   // Seed default reviewers for any empty slots
-  let reviewerCountBefore = Object.keys(reviewers).length;
   for (const r of DEFAULT_REVIEWERS) {
     if (!reviewers[r.slot]) {
       await sb.from('reviewers').upsert({ slot: r.slot, name: r.name });
       reviewers[r.slot] = r;
-    }
-  }
-  // If new reviewers were added, wipe all assignments + evaluations and redistribute
-  if (Object.keys(reviewers).length > reviewerCountBefore) {
-    await sb.from('assignments').delete().neq('applicant_id', '');
-    await sb.from('evaluations').delete().neq('applicant_id', '');
-    Object.keys(assignments).forEach(k => delete assignments[k]);
-    evals = {};
-    // Redistribute all 38 apps across all filled slots
-    const allApps = [...APPLICANTS];
-    for (let i = allApps.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [allApps[i], allApps[j]] = [allApps[j], allApps[i]];
-    }
-    const filledSlots = Object.values(reviewers).map(r => r.slot);
-    const total = allApps.length;
-    const slotSize = Math.floor(total / filledSlots.length);
-    const extras = total % filledSlots.length;
-    let idx = 0;
-    for (let si = 0; si < filledSlots.length; si++) {
-      const s = filledSlots[si];
-      const count = slotSize + (si < extras ? 1 : 0);
-      const batch = allApps.slice(idx, idx + count);
-      for (const a of batch) {
-        await sb.from('assignments').upsert({ applicant_id: String(a.id), slot: s });
-        assignments[String(a.id)] = s;
-      }
-      idx += count;
     }
   }
 
