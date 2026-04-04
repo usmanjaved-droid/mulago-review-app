@@ -208,7 +208,7 @@
 
   /* MAIN */
   .main { padding: 2rem 2.25rem; }
-  .main-header { margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .main-header { margin-bottom: 1.25rem; }
   .main-title { font-size: 1.5rem; font-weight: 800; color: var(--on-surface); letter-spacing: -0.02em; }
   .main-sub { font-size: 0.875rem; color: var(--on-surface-variant); margin-top: 0.25rem; }
 
@@ -676,17 +676,15 @@
 <div class="layout">
   <main class="main">
     <div class="main-header">
-      <div>
-        <div class="main-title">Applications</div>
-        <div class="main-sub">Click any row to view full application and evaluate</div>
-      </div>
-      <div class="search-wrap" style="width:260px;flex:0 0 260px">
-        <span class="search-icon" style="font-style:normal">🔍</span>
-        <input class="search-input" type="text" id="search-input" placeholder="Search by name, org, sector…" oninput="renderTable()">
-      </div>
+      <div class="main-title">Applications</div>
+      <div class="main-sub">Click any row to view full application and evaluate</div>
     </div>
 
     <div class="filter-bar">
+      <div class="search-wrap" style="flex:1;min-width:180px">
+        <span class="search-icon" style="font-style:normal">🔍</span>
+        <input class="search-input" type="text" id="search-input" placeholder="Search by name, org, sector…" oninput="renderTable()">
+      </div>
       <select class="filter-select" id="filter-status-select" onchange="setFilter('status', this.value)">
         <option value="all">All Statuses</option>
         <option value="pending">Pending</option>
@@ -707,13 +705,6 @@
       </select>
       <select class="filter-select" id="filter-reviewer-select" onchange="setFilter('reviewer', this.value)" style="display:none">
         <option value="all">All Reviewers</option>
-      </select>
-      <select class="select-ctrl" id="sort-select" onchange="renderTable()">
-        <option value="date">Sort: Date</option>
-        <option value="name">Sort: Name</option>
-        <option value="org">Sort: Organization</option>
-        <option value="budget">Sort: Budget</option>
-        <option value="score">Sort: Score</option>
       </select>
       <span class="results-count" id="results-count">39 results</span>
     </div>
@@ -2696,7 +2687,6 @@ function setFilter(type, value) {
 
 function sortBy(field) {
   currentSort = field;
-  document.getElementById('sort-select').value = field;
   renderTable();
 }
 
@@ -2726,7 +2716,7 @@ function getFilteredSorted() {
     );
   }
 
-  const sort = document.getElementById('sort-select').value;
+  const sort = currentSort || 'name';
   list.sort((a, b) => {
     if (sort === 'name') return a.name.localeCompare(b.name);
     if (sort === 'org') return a.org.localeCompare(b.org);
