@@ -208,7 +208,7 @@
 
   /* MAIN */
   .main { padding: 2rem 2.25rem; }
-  .main-header { margin-bottom: 1.5rem; }
+  .main-header { margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
   .main-title { font-size: 1.5rem; font-weight: 800; color: var(--on-surface); letter-spacing: -0.02em; }
   .main-sub { font-size: 0.875rem; color: var(--on-surface-variant); margin-top: 0.25rem; }
 
@@ -676,8 +676,14 @@
 <div class="layout">
   <main class="main">
     <div class="main-header">
-      <div class="main-title">Applications</div>
-      <div class="main-sub">Click any row to view full application and evaluate</div>
+      <div>
+        <div class="main-title">Applications</div>
+        <div class="main-sub">Click any row to view full application and evaluate</div>
+      </div>
+      <div class="search-wrap" style="width:280px">
+        <span class="search-icon" style="font-style:normal">🔍</span>
+        <input class="search-input" type="text" id="search-input" placeholder="Search by name, org, sector…" oninput="renderTable()">
+      </div>
     </div>
 
     <div class="filter-bar">
@@ -702,10 +708,6 @@
       <select class="filter-select" id="filter-reviewer-select" onchange="setFilter('reviewer', this.value)" style="display:none">
         <option value="all">All Reviewers</option>
       </select>
-      <div class="search-wrap" style="flex:1;min-width:200px">
-        <span class="search-icon" style="font-style:normal">🔍</span>
-        <input class="search-input" type="text" id="search-input" placeholder="Search by name, org, sector…" oninput="renderTable()">
-      </div>
       <select class="select-ctrl" id="sort-select" onchange="renderTable()">
         <option value="date">Sort: Date</option>
         <option value="name">Sort: Name</option>
@@ -713,7 +715,7 @@
         <option value="budget">Sort: Budget</option>
         <option value="score">Sort: Score</option>
       </select>
-      <span class="results-count" id="results-count">38 results</span>
+      <span class="results-count" id="results-count">39 results</span>
     </div>
 
     <div class="progress-bar-section" id="reviewer-progress-section" style="display:none">
