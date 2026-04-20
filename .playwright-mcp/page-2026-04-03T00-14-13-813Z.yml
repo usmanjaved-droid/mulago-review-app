@@ -1,0 +1,684 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: Mulago Scale-Up Fellowship 2026
+      - generic [ref=e5]: June 6–12 · Application Review System
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: "38"
+        - generic [ref=e9]: Total Apps
+      - generic [ref=e10]:
+        - generic [ref=e11]: "0"
+        - generic [ref=e12]: Shortlisted
+      - generic [ref=e13]:
+        - generic [ref=e14]: "1"
+        - generic [ref=e15]: Reviewed
+      - generic "Switch reviewer" [ref=e704] [cursor=pointer]: 👤 Usman Javed
+      - button "⚙ Reviewers" [ref=e16] [cursor=pointer]
+  - generic [ref=e17]:
+    - complementary [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: Progress
+        - generic [ref=e21]:
+          - generic [ref=e22]: "37"
+          - generic [ref=e23]: Pending review
+        - generic [ref=e24]:
+          - generic [ref=e25]: "2"
+          - generic [ref=e26]: Scored
+      - generic [ref=e27]:
+        - generic [ref=e28]: Filter by Status
+        - button "All 38" [ref=e29] [cursor=pointer]:
+          - text: All
+          - generic [ref=e30]: "38"
+        - button "Pending 37" [ref=e98] [cursor=pointer]:
+          - text: Pending
+          - generic [ref=e32]: "37"
+        - button "In Review 1" [ref=e99] [cursor=pointer]:
+          - text: In Review
+          - generic [ref=e34]: "1"
+        - button "★ Shortlisted 0" [ref=e35] [cursor=pointer]:
+          - text: ★ Shortlisted
+          - generic [ref=e36]: "0"
+        - button "✕ Rejected 0" [ref=e37] [cursor=pointer]:
+          - text: ✕ Rejected
+          - generic [ref=e38]: "0"
+      - generic [ref=e100]:
+        - generic [ref=e101]: Filter by Reviewer
+        - generic [ref=e102]:
+          - button "Usman Javed 10" [ref=e705] [cursor=pointer]:
+            - text: Usman Javed
+            - generic [ref=e706]: "10"
+          - button "Haroon Yasin 10" [ref=e707] [cursor=pointer]:
+            - text: Haroon Yasin
+            - generic [ref=e708]: "10"
+          - button "Sabeena Abbasi 9" [ref=e709] [cursor=pointer]:
+            - text: Sabeena Abbasi
+            - generic [ref=e710]: "9"
+          - button "Sarah Farooq 9" [ref=e711] [cursor=pointer]:
+            - text: Sarah Farooq
+            - generic [ref=e712]: "9"
+          - button "All" [ref=e713] [cursor=pointer]
+      - generic [ref=e112]:
+        - generic [ref=e113]: Reviewer Progress
+        - generic [ref=e114]:
+          - generic [ref=e714]:
+            - generic [ref=e715]: Usman Javed
+            - generic [ref=e717]: 0/10
+          - generic [ref=e718]:
+            - generic [ref=e719]: Haroon Yasin
+            - generic [ref=e721]: 0/10
+          - generic [ref=e722]:
+            - generic [ref=e723]: Sabeena Abbasi
+            - generic [ref=e725]: 0/9
+          - generic [ref=e726]:
+            - generic [ref=e727]: Sarah Farooq
+            - generic [ref=e729]: 0/9
+      - generic [ref=e39]:
+        - generic [ref=e40]: Filter by Sector
+        - button "All Sectors" [ref=e41] [cursor=pointer]
+        - button "Education" [ref=e42] [cursor=pointer]
+        - button "Health" [ref=e43] [cursor=pointer]
+        - button "Mental Health" [ref=e44] [cursor=pointer]
+        - button "Livelihoods" [ref=e45] [cursor=pointer]
+        - button "Environment" [ref=e46] [cursor=pointer]
+        - button "Women & Girls" [ref=e47] [cursor=pointer]
+        - button "Tech & Innovation" [ref=e48] [cursor=pointer]
+        - button "Youth" [ref=e49] [cursor=pointer]
+        - button "Disability" [ref=e50] [cursor=pointer]
+    - main [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]: Applications
+        - generic [ref=e54]: Click any row to view full application and evaluate
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic: 🔍
+          - textbox "Search by name, org, sector…" [ref=e57]
+        - combobox [ref=e58] [cursor=pointer]:
+          - 'option "Sort: Date" [selected]'
+          - 'option "Sort: Name"'
+          - 'option "Sort: Organization"'
+          - 'option "Sort: Budget"'
+          - 'option "Sort: Score"'
+        - generic [ref=e59]: 38 results
+      - table [ref=e61]:
+        - rowgroup [ref=e62]:
+          - row "Applicant ↕ Sector ↕ Budget ↕ Team ↕ Stage Score Status Assigned To" [ref=e131]:
+            - columnheader "Applicant ↕" [ref=e64] [cursor=pointer]
+            - columnheader "Sector ↕" [ref=e65] [cursor=pointer]
+            - columnheader "Budget ↕" [ref=e66] [cursor=pointer]
+            - columnheader "Team ↕" [ref=e67] [cursor=pointer]
+            - columnheader "Stage" [ref=e68] [cursor=pointer]
+            - columnheader "Score" [ref=e69] [cursor=pointer]
+            - columnheader "Status" [ref=e70] [cursor=pointer]
+            - columnheader "Assigned To" [ref=e132] [cursor=pointer]
+        - rowgroup [ref=e133]:
+          - row "Sonal Dhanani Parindey Wellbeing and Development Foundation Mental Health $25K 3 Founder — Pending Sarah Farooq" [ref=e730] [cursor=pointer]:
+            - cell "Sonal Dhanani Parindey Wellbeing and Development Foundation" [ref=e731]:
+              - generic [ref=e732]:
+                - generic [ref=e733]: Sonal Dhanani
+                - generic [ref=e734]: Parindey Wellbeing and Development Foundation
+            - cell "Mental Health" [ref=e735]:
+              - generic [ref=e736]: Mental Health
+            - cell "$25K" [ref=e737]
+            - cell "3" [ref=e738]
+            - cell "Founder" [ref=e739]
+            - cell "—" [ref=e740]
+            - cell "Pending" [ref=e741]:
+              - generic [ref=e742]: Pending
+            - cell "Sarah Farooq" [ref=e743]:
+              - generic [ref=e744]: Sarah Farooq
+          - row "wahab shah zeenat welfare foundation Women & Girls $300 4 Founder 2/25 Pending Sarah Farooq" [ref=e745] [cursor=pointer]:
+            - cell "wahab shah zeenat welfare foundation" [ref=e746]:
+              - generic [ref=e747]:
+                - generic [ref=e748]: wahab shah
+                - generic [ref=e749]: zeenat welfare foundation
+            - cell "Women & Girls" [ref=e750]:
+              - generic [ref=e751]: Women & Girls
+            - cell "$300" [ref=e752]
+            - cell "4" [ref=e753]
+            - cell "Founder" [ref=e754]
+            - cell "2/25" [ref=e755]
+            - cell "Pending" [ref=e756]:
+              - generic [ref=e757]: Pending
+            - cell "Sarah Farooq" [ref=e758]:
+              - generic [ref=e759]: Sarah Farooq
+          - row "Bilal Afzal Khan Institute of Emerging Careers Livelihoods $125K 28 Founder 4/25 Pending Haroon Yasin" [ref=e760] [cursor=pointer]:
+            - cell "Bilal Afzal Khan Institute of Emerging Careers" [ref=e761]:
+              - generic [ref=e762]:
+                - generic [ref=e763]: Bilal Afzal Khan
+                - generic [ref=e764]: Institute of Emerging Careers
+            - cell "Livelihoods" [ref=e765]:
+              - generic [ref=e766]: Livelihoods
+            - cell "$125K" [ref=e767]
+            - cell "28" [ref=e768]
+            - cell "Founder" [ref=e769]
+            - cell "4/25" [ref=e770]
+            - cell "Pending" [ref=e771]:
+              - generic [ref=e772]: Pending
+            - cell "Haroon Yasin" [ref=e773]:
+              - generic [ref=e774]: Haroon Yasin
+          - row "Dr. Muhammad Awais Shaukat AlifLaila Kids Digital Library by Ehya Education Services Education $150K 45 Founder — Pending Sabeena Abbasi" [ref=e775] [cursor=pointer]:
+            - cell "Dr. Muhammad Awais Shaukat AlifLaila Kids Digital Library by Ehya Education Services" [ref=e776]:
+              - generic [ref=e777]:
+                - generic [ref=e778]: Dr. Muhammad Awais Shaukat
+                - generic [ref=e779]: AlifLaila Kids Digital Library by Ehya Education Services
+            - cell "Education" [ref=e780]:
+              - generic [ref=e781]: Education
+            - cell "$150K" [ref=e782]
+            - cell "45" [ref=e783]
+            - cell "Founder" [ref=e784]
+            - cell "—" [ref=e785]
+            - cell "Pending" [ref=e786]:
+              - generic [ref=e787]: Pending
+            - cell "Sabeena Abbasi" [ref=e788]:
+              - generic [ref=e789]: Sabeena Abbasi
+          - row "Karishma Ali Karishma Ali Foundation Women & Girls $80K 6 Founder — Pending Haroon Yasin" [ref=e790] [cursor=pointer]:
+            - cell "Karishma Ali Karishma Ali Foundation" [ref=e791]:
+              - generic [ref=e792]:
+                - generic [ref=e793]: Karishma Ali
+                - generic [ref=e794]: Karishma Ali Foundation
+            - cell "Women & Girls" [ref=e795]:
+              - generic [ref=e796]: Women & Girls
+            - cell "$80K" [ref=e797]
+            - cell "6" [ref=e798]
+            - cell "Founder" [ref=e799]
+            - cell "—" [ref=e800]
+            - cell "Pending" [ref=e801]:
+              - generic [ref=e802]: Pending
+            - cell "Haroon Yasin" [ref=e803]:
+              - generic [ref=e804]: Haroon Yasin
+          - row "Abdul Samad Khan Youth Impact Youth $180K 10 Founder — Pending Sarah Farooq" [ref=e805] [cursor=pointer]:
+            - cell "Abdul Samad Khan Youth Impact" [ref=e806]:
+              - generic [ref=e807]:
+                - generic [ref=e808]: Abdul Samad Khan
+                - generic [ref=e809]: Youth Impact
+            - cell "Youth" [ref=e810]:
+              - generic [ref=e811]: Youth
+            - cell "$180K" [ref=e812]
+            - cell "10" [ref=e813]
+            - cell "Founder" [ref=e814]
+            - cell "—" [ref=e815]
+            - cell "Pending" [ref=e816]:
+              - generic [ref=e817]: Pending
+            - cell "Sarah Farooq" [ref=e818]:
+              - generic [ref=e819]: Sarah Farooq
+          - row "Atif Nawaz Youth Ideal Development Environment $3K 8 Founder — In Review Usman Javed" [ref=e820] [cursor=pointer]:
+            - cell "Atif Nawaz Youth Ideal Development" [ref=e821]:
+              - generic [ref=e822]:
+                - generic [ref=e823]: Atif Nawaz
+                - generic [ref=e824]: Youth Ideal Development
+            - cell "Environment" [ref=e825]:
+              - generic [ref=e826]: Environment
+            - cell "$3K" [ref=e827]
+            - cell "8" [ref=e828]
+            - cell "Founder" [ref=e829]
+            - cell "—" [ref=e830]
+            - cell "In Review" [ref=e831]:
+              - generic [ref=e832]: In Review
+            - cell "Usman Javed" [ref=e833]:
+              - generic [ref=e834]: Usman Javed
+          - row "Ridah Zafar Paak Fareezah-e-Taleem Foundation Youth $60K 40 Founder — Pending Usman Javed" [ref=e835] [cursor=pointer]:
+            - cell "Ridah Zafar Paak Fareezah-e-Taleem Foundation" [ref=e836]:
+              - generic [ref=e837]:
+                - generic [ref=e838]: Ridah Zafar
+                - generic [ref=e839]: Paak Fareezah-e-Taleem Foundation
+            - cell "Youth" [ref=e840]:
+              - generic [ref=e841]: Youth
+            - cell "$60K" [ref=e842]
+            - cell "40" [ref=e843]
+            - cell "Founder" [ref=e844]
+            - cell "—" [ref=e845]
+            - cell "Pending" [ref=e846]:
+              - generic [ref=e847]: Pending
+            - cell "Usman Javed" [ref=e848]:
+              - generic [ref=e849]: Usman Javed
+          - row "Miftah Khan IECED Pakistan Women & Girls $2K 20 Founder — Pending Sabeena Abbasi" [ref=e850] [cursor=pointer]:
+            - cell "Miftah Khan IECED Pakistan" [ref=e851]:
+              - generic [ref=e852]:
+                - generic [ref=e853]: Miftah Khan
+                - generic [ref=e854]: IECED Pakistan
+            - cell "Women & Girls" [ref=e855]:
+              - generic [ref=e856]: Women & Girls
+            - cell "$2K" [ref=e857]
+            - cell "20" [ref=e858]
+            - cell "Founder" [ref=e859]
+            - cell "—" [ref=e860]
+            - cell "Pending" [ref=e861]:
+              - generic [ref=e862]: Pending
+            - cell "Sabeena Abbasi" [ref=e863]:
+              - generic [ref=e864]: Sabeena Abbasi
+          - row "Syed Muhammad Qumnber Imam Abidi Abilities Ignite Educational Foundation Education $3K 4 Founder — Pending Haroon Yasin" [ref=e865] [cursor=pointer]:
+            - cell "Syed Muhammad Qumnber Imam Abidi Abilities Ignite Educational Foundation" [ref=e866]:
+              - generic [ref=e867]:
+                - generic [ref=e868]: Syed Muhammad Qumnber Imam Abidi
+                - generic [ref=e869]: Abilities Ignite Educational Foundation
+            - cell "Education" [ref=e870]:
+              - generic [ref=e871]: Education
+            - cell "$3K" [ref=e872]
+            - cell "4" [ref=e873]
+            - cell "Founder" [ref=e874]
+            - cell "—" [ref=e875]
+            - cell "Pending" [ref=e876]:
+              - generic [ref=e877]: Pending
+            - cell "Haroon Yasin" [ref=e878]:
+              - generic [ref=e879]: Haroon Yasin
+          - row "Wardah Noor XWAVE Education $64K 13 Founder — Pending Usman Javed" [ref=e880] [cursor=pointer]:
+            - cell "Wardah Noor XWAVE" [ref=e881]:
+              - generic [ref=e882]:
+                - generic [ref=e883]: Wardah Noor
+                - generic [ref=e884]: XWAVE
+            - cell "Education" [ref=e885]:
+              - generic [ref=e886]: Education
+            - cell "$64K" [ref=e887]
+            - cell "13" [ref=e888]
+            - cell "Founder" [ref=e889]
+            - cell "—" [ref=e890]
+            - cell "Pending" [ref=e891]:
+              - generic [ref=e892]: Pending
+            - cell "Usman Javed" [ref=e893]:
+              - generic [ref=e894]: Usman Javed
+          - row "Habiba Banu Spiro Health $505K 22 Founder — Pending Sabeena Abbasi" [ref=e895] [cursor=pointer]:
+            - cell "Habiba Banu Spiro" [ref=e896]:
+              - generic [ref=e897]:
+                - generic [ref=e898]: Habiba Banu
+                - generic [ref=e899]: Spiro
+            - cell "Health" [ref=e900]:
+              - generic [ref=e901]: Health
+            - cell "$505K" [ref=e902]
+            - cell "22" [ref=e903]
+            - cell "Founder" [ref=e904]
+            - cell "—" [ref=e905]
+            - cell "Pending" [ref=e906]:
+              - generic [ref=e907]: Pending
+            - cell "Sabeena Abbasi" [ref=e908]:
+              - generic [ref=e909]: Sabeena Abbasi
+          - row "Adnan Qureshi Teach the World Foundation Education $1.7M 68 Founder — Pending Haroon Yasin" [ref=e910] [cursor=pointer]:
+            - cell "Adnan Qureshi Teach the World Foundation" [ref=e911]:
+              - generic [ref=e912]:
+                - generic [ref=e913]: Adnan Qureshi
+                - generic [ref=e914]: Teach the World Foundation
+            - cell "Education" [ref=e915]:
+              - generic [ref=e916]: Education
+            - cell "$1.7M" [ref=e917]
+            - cell "68" [ref=e918]
+            - cell "Founder" [ref=e919]
+            - cell "—" [ref=e920]
+            - cell "Pending" [ref=e921]:
+              - generic [ref=e922]: Pending
+            - cell "Haroon Yasin" [ref=e923]:
+              - generic [ref=e924]: Haroon Yasin
+          - row "RAVINDRA KUMAR THE JAGRUTI FOUNDATION Livelihoods $10K 5 Founder — Pending Usman Javed" [ref=e925] [cursor=pointer]:
+            - cell "RAVINDRA KUMAR THE JAGRUTI FOUNDATION" [ref=e926]:
+              - generic [ref=e927]:
+                - generic [ref=e928]: RAVINDRA KUMAR
+                - generic [ref=e929]: THE JAGRUTI FOUNDATION
+            - cell "Livelihoods" [ref=e930]:
+              - generic [ref=e931]: Livelihoods
+            - cell "$10K" [ref=e932]
+            - cell "5" [ref=e933]
+            - cell "Founder" [ref=e934]
+            - cell "—" [ref=e935]
+            - cell "Pending" [ref=e936]:
+              - generic [ref=e937]: Pending
+            - cell "Usman Javed" [ref=e938]:
+              - generic [ref=e939]: Usman Javed
+          - row "Ali Zain Ul Abidin Innovative Social Academy Youth $78K 7 Founder — Pending Usman Javed" [ref=e940] [cursor=pointer]:
+            - cell "Ali Zain Ul Abidin Innovative Social Academy" [ref=e941]:
+              - generic [ref=e942]:
+                - generic [ref=e943]: Ali Zain Ul Abidin
+                - generic [ref=e944]: Innovative Social Academy
+            - cell "Youth" [ref=e945]:
+              - generic [ref=e946]: Youth
+            - cell "$78K" [ref=e947]
+            - cell "7" [ref=e948]
+            - cell "Founder" [ref=e949]
+            - cell "—" [ref=e950]
+            - cell "Pending" [ref=e951]:
+              - generic [ref=e952]: Pending
+            - cell "Usman Javed" [ref=e953]:
+              - generic [ref=e954]: Usman Javed
+          - row "Ahmad Malik Charity Doings Foundation Pakistan and US 501(c)-3 certified Health $300K 22 Founder — Pending Sarah Farooq" [ref=e955] [cursor=pointer]:
+            - cell "Ahmad Malik Charity Doings Foundation Pakistan and US 501(c)-3 certified" [ref=e956]:
+              - generic [ref=e957]:
+                - generic [ref=e958]: Ahmad Malik
+                - generic [ref=e959]: Charity Doings Foundation Pakistan and US 501(c)-3 certified
+            - cell "Health" [ref=e960]:
+              - generic [ref=e961]: Health
+            - cell "$300K" [ref=e962]
+            - cell "22" [ref=e963]
+            - cell "Founder" [ref=e964]
+            - cell "—" [ref=e965]
+            - cell "Pending" [ref=e966]:
+              - generic [ref=e967]: Pending
+            - cell "Sarah Farooq" [ref=e968]:
+              - generic [ref=e969]: Sarah Farooq
+          - row "Iqra Parveen Awan PCOS Helps Health $3K 4 Founder — Pending Sarah Farooq" [ref=e970] [cursor=pointer]:
+            - cell "Iqra Parveen Awan PCOS Helps" [ref=e971]:
+              - generic [ref=e972]:
+                - generic [ref=e973]: Iqra Parveen Awan
+                - generic [ref=e974]: PCOS Helps
+            - cell "Health" [ref=e975]:
+              - generic [ref=e976]: Health
+            - cell "$3K" [ref=e977]
+            - cell "4" [ref=e978]
+            - cell "Founder" [ref=e979]
+            - cell "—" [ref=e980]
+            - cell "Pending" [ref=e981]:
+              - generic [ref=e982]: Pending
+            - cell "Sarah Farooq" [ref=e983]:
+              - generic [ref=e984]: Sarah Farooq
+          - row "Kashaf Akhtar Ecobricks (SMC Pvt) Limited Environment $200K 12 Founder — Pending Sarah Farooq" [ref=e985] [cursor=pointer]:
+            - cell "Kashaf Akhtar Ecobricks (SMC Pvt) Limited" [ref=e986]:
+              - generic [ref=e987]:
+                - generic [ref=e988]: Kashaf Akhtar
+                - generic [ref=e989]: Ecobricks (SMC Pvt) Limited
+            - cell "Environment" [ref=e990]:
+              - generic [ref=e991]: Environment
+            - cell "$200K" [ref=e992]
+            - cell "12" [ref=e993]
+            - cell "Founder" [ref=e994]
+            - cell "—" [ref=e995]
+            - cell "Pending" [ref=e996]:
+              - generic [ref=e997]: Pending
+            - cell "Sarah Farooq" [ref=e998]:
+              - generic [ref=e999]: Sarah Farooq
+          - row "Abid Hussain lashari National Disability and Development Forum NDF Disability $2.0M 105 Founder — Pending Sabeena Abbasi" [ref=e1000] [cursor=pointer]:
+            - cell "Abid Hussain lashari National Disability and Development Forum NDF" [ref=e1001]:
+              - generic [ref=e1002]:
+                - generic [ref=e1003]: Abid Hussain lashari
+                - generic [ref=e1004]: National Disability and Development Forum NDF
+            - cell "Disability" [ref=e1005]:
+              - generic [ref=e1006]: Disability
+            - cell "$2.0M" [ref=e1007]
+            - cell "105" [ref=e1008]
+            - cell "Founder" [ref=e1009]
+            - cell "—" [ref=e1010]
+            - cell "Pending" [ref=e1011]:
+              - generic [ref=e1012]: Pending
+            - cell "Sabeena Abbasi" [ref=e1013]:
+              - generic [ref=e1014]: Sabeena Abbasi
+          - row "Mohsin Ali Mustafa AKU Manual of Clinical Practice Guidelines Health $80K 8 Founder — Pending Sarah Farooq" [ref=e1015] [cursor=pointer]:
+            - cell "Mohsin Ali Mustafa AKU Manual of Clinical Practice Guidelines" [ref=e1016]:
+              - generic [ref=e1017]:
+                - generic [ref=e1018]: Mohsin Ali Mustafa
+                - generic [ref=e1019]: AKU Manual of Clinical Practice Guidelines
+            - cell "Health" [ref=e1020]:
+              - generic [ref=e1021]: Health
+            - cell "$80K" [ref=e1022]
+            - cell "8" [ref=e1023]
+            - cell "Founder" [ref=e1024]
+            - cell "—" [ref=e1025]
+            - cell "Pending" [ref=e1026]:
+              - generic [ref=e1027]: Pending
+            - cell "Sarah Farooq" [ref=e1028]:
+              - generic [ref=e1029]: Sarah Farooq
+          - row "Syed Hasnain Raza MPCEN Environment $4K 6 Founder — Pending Haroon Yasin" [ref=e1030] [cursor=pointer]:
+            - cell "Syed Hasnain Raza MPCEN" [ref=e1031]:
+              - generic [ref=e1032]:
+                - generic [ref=e1033]: Syed Hasnain Raza
+                - generic [ref=e1034]: MPCEN
+            - cell "Environment" [ref=e1035]:
+              - generic [ref=e1036]: Environment
+            - cell "$4K" [ref=e1037]
+            - cell "6" [ref=e1038]
+            - cell "Founder" [ref=e1039]
+            - cell "—" [ref=e1040]
+            - cell "Pending" [ref=e1041]:
+              - generic [ref=e1042]: Pending
+            - cell "Haroon Yasin" [ref=e1043]:
+              - generic [ref=e1044]: Haroon Yasin
+          - row "Sumera Mehboob Mechanism for rational change MRC Education $104K 21 Founder — Pending Usman Javed" [ref=e1045] [cursor=pointer]:
+            - cell "Sumera Mehboob Mechanism for rational change MRC" [ref=e1046]:
+              - generic [ref=e1047]:
+                - generic [ref=e1048]: Sumera Mehboob
+                - generic [ref=e1049]: Mechanism for rational change MRC
+            - cell "Education" [ref=e1050]:
+              - generic [ref=e1051]: Education
+            - cell "$104K" [ref=e1052]
+            - cell "21" [ref=e1053]
+            - cell "Founder" [ref=e1054]
+            - cell "—" [ref=e1055]
+            - cell "Pending" [ref=e1056]:
+              - generic [ref=e1057]: Pending
+            - cell "Usman Javed" [ref=e1058]:
+              - generic [ref=e1059]: Usman Javed
+          - row "Maira Siddiqui Chiragh Education Technologies Education $20K 4 Founder — Pending Usman Javed" [ref=e1060] [cursor=pointer]:
+            - cell "Maira Siddiqui Chiragh Education Technologies" [ref=e1061]:
+              - generic [ref=e1062]:
+                - generic [ref=e1063]: Maira Siddiqui
+                - generic [ref=e1064]: Chiragh Education Technologies
+            - cell "Education" [ref=e1065]:
+              - generic [ref=e1066]: Education
+            - cell "$20K" [ref=e1067]
+            - cell "4" [ref=e1068]
+            - cell "Founder" [ref=e1069]
+            - cell "—" [ref=e1070]
+            - cell "Pending" [ref=e1071]:
+              - generic [ref=e1072]: Pending
+            - cell "Usman Javed" [ref=e1073]:
+              - generic [ref=e1074]: Usman Javed
+          - row "Abid Omar AirEmissions Consultants (Private) Limited Environment $180K 6 Founder — Pending Sabeena Abbasi" [ref=e1075] [cursor=pointer]:
+            - cell "Abid Omar AirEmissions Consultants (Private) Limited" [ref=e1076]:
+              - generic [ref=e1077]:
+                - generic [ref=e1078]: Abid Omar
+                - generic [ref=e1079]: AirEmissions Consultants (Private) Limited
+            - cell "Environment" [ref=e1080]:
+              - generic [ref=e1081]: Environment
+            - cell "$180K" [ref=e1082]
+            - cell "6" [ref=e1083]
+            - cell "Founder" [ref=e1084]
+            - cell "—" [ref=e1085]
+            - cell "Pending" [ref=e1086]:
+              - generic [ref=e1087]: Pending
+            - cell "Sabeena Abbasi" [ref=e1088]:
+              - generic [ref=e1089]: Sabeena Abbasi
+          - row "Zainab Hameed TeeSquare Education $120K 14 Founder — Pending Haroon Yasin" [ref=e1090] [cursor=pointer]:
+            - cell "Zainab Hameed TeeSquare" [ref=e1091]:
+              - generic [ref=e1092]:
+                - generic [ref=e1093]: Zainab Hameed
+                - generic [ref=e1094]: TeeSquare
+            - cell "Education" [ref=e1095]:
+              - generic [ref=e1096]: Education
+            - cell "$120K" [ref=e1097]
+            - cell "14" [ref=e1098]
+            - cell "Founder" [ref=e1099]
+            - cell "—" [ref=e1100]
+            - cell "Pending" [ref=e1101]:
+              - generic [ref=e1102]: Pending
+            - cell "Haroon Yasin" [ref=e1103]:
+              - generic [ref=e1104]: Haroon Yasin
+          - row "Chander Kumar Progressive Human Foundation Women & Girls $2K 5 Founder — Pending Sabeena Abbasi" [ref=e1105] [cursor=pointer]:
+            - cell "Chander Kumar Progressive Human Foundation" [ref=e1106]:
+              - generic [ref=e1107]:
+                - generic [ref=e1108]: Chander Kumar
+                - generic [ref=e1109]: Progressive Human Foundation
+            - cell "Women & Girls" [ref=e1110]:
+              - generic [ref=e1111]: Women & Girls
+            - cell "$2K" [ref=e1112]
+            - cell "5" [ref=e1113]
+            - cell "Founder" [ref=e1114]
+            - cell "—" [ref=e1115]
+            - cell "Pending" [ref=e1116]:
+              - generic [ref=e1117]: Pending
+            - cell "Sabeena Abbasi" [ref=e1118]:
+              - generic [ref=e1119]: Sabeena Abbasi
+          - row "Hamza Ansar Holistiq Education $100K 8 Founder — Pending Haroon Yasin" [ref=e1120] [cursor=pointer]:
+            - cell "Hamza Ansar Holistiq" [ref=e1121]:
+              - generic [ref=e1122]:
+                - generic [ref=e1123]: Hamza Ansar
+                - generic [ref=e1124]: Holistiq
+            - cell "Education" [ref=e1125]:
+              - generic [ref=e1126]: Education
+            - cell "$100K" [ref=e1127]
+            - cell "8" [ref=e1128]
+            - cell "Founder" [ref=e1129]
+            - cell "—" [ref=e1130]
+            - cell "Pending" [ref=e1131]:
+              - generic [ref=e1132]: Pending
+            - cell "Haroon Yasin" [ref=e1133]:
+              - generic [ref=e1134]: Haroon Yasin
+          - row "Ali Siddiq Amal Academy Livelihoods $450K 48 Founder — Pending Usman Javed" [ref=e1135] [cursor=pointer]:
+            - cell "Ali Siddiq Amal Academy" [ref=e1136]:
+              - generic [ref=e1137]:
+                - generic [ref=e1138]: Ali Siddiq
+                - generic [ref=e1139]: Amal Academy
+            - cell "Livelihoods" [ref=e1140]:
+              - generic [ref=e1141]: Livelihoods
+            - cell "$450K" [ref=e1142]
+            - cell "48" [ref=e1143]
+            - cell "Founder" [ref=e1144]
+            - cell "—" [ref=e1145]
+            - cell "Pending" [ref=e1146]:
+              - generic [ref=e1147]: Pending
+            - cell "Usman Javed" [ref=e1148]:
+              - generic [ref=e1149]: Usman Javed
+          - row "Asghar Khan Dewa Foundation Livelihoods $18K 9 Founder — Pending Haroon Yasin" [ref=e1150] [cursor=pointer]:
+            - cell "Asghar Khan Dewa Foundation" [ref=e1151]:
+              - generic [ref=e1152]:
+                - generic [ref=e1153]: Asghar Khan
+                - generic [ref=e1154]: Dewa Foundation
+            - cell "Livelihoods" [ref=e1155]:
+              - generic [ref=e1156]: Livelihoods
+            - cell "$18K" [ref=e1157]
+            - cell "9" [ref=e1158]
+            - cell "Founder" [ref=e1159]
+            - cell "—" [ref=e1160]
+            - cell "Pending" [ref=e1161]:
+              - generic [ref=e1162]: Pending
+            - cell "Haroon Yasin" [ref=e1163]:
+              - generic [ref=e1164]: Haroon Yasin
+          - row "Lala Rukh Fazal-Ur-Rahman Science Fuse Education $100K 7 Founder — Pending Sarah Farooq" [ref=e1165] [cursor=pointer]:
+            - cell "Lala Rukh Fazal-Ur-Rahman Science Fuse" [ref=e1166]:
+              - generic [ref=e1167]:
+                - generic [ref=e1168]: Lala Rukh Fazal-Ur-Rahman
+                - generic [ref=e1169]: Science Fuse
+            - cell "Education" [ref=e1170]:
+              - generic [ref=e1171]: Education
+            - cell "$100K" [ref=e1172]
+            - cell "7" [ref=e1173]
+            - cell "Founder" [ref=e1174]
+            - cell "—" [ref=e1175]
+            - cell "Pending" [ref=e1176]:
+              - generic [ref=e1177]: Pending
+            - cell "Sarah Farooq" [ref=e1178]:
+              - generic [ref=e1179]: Sarah Farooq
+          - row "Osama Shahid Soby Trading Co Livelihoods $101K 30 Founder — Pending Sabeena Abbasi" [ref=e1180] [cursor=pointer]:
+            - cell "Osama Shahid Soby Trading Co" [ref=e1181]:
+              - generic [ref=e1182]:
+                - generic [ref=e1183]: Osama Shahid
+                - generic [ref=e1184]: Soby Trading Co
+            - cell "Livelihoods" [ref=e1185]:
+              - generic [ref=e1186]: Livelihoods
+            - cell "$101K" [ref=e1187]
+            - cell "30" [ref=e1188]
+            - cell "Founder" [ref=e1189]
+            - cell "—" [ref=e1190]
+            - cell "Pending" [ref=e1191]:
+              - generic [ref=e1192]: Pending
+            - cell "Sabeena Abbasi" [ref=e1193]:
+              - generic [ref=e1194]: Sabeena Abbasi
+          - row "Azima Dhanjee ConnectHear Disability $130K 30 Founder — Pending Sarah Farooq" [ref=e1195] [cursor=pointer]:
+            - cell "Azima Dhanjee ConnectHear" [ref=e1196]:
+              - generic [ref=e1197]:
+                - generic [ref=e1198]: Azima Dhanjee
+                - generic [ref=e1199]: ConnectHear
+            - cell "Disability" [ref=e1200]:
+              - generic [ref=e1201]: Disability
+            - cell "$130K" [ref=e1202]
+            - cell "30" [ref=e1203]
+            - cell "Founder" [ref=e1204]
+            - cell "—" [ref=e1205]
+            - cell "Pending" [ref=e1206]:
+              - generic [ref=e1207]: Pending
+            - cell "Sarah Farooq" [ref=e1208]:
+              - generic [ref=e1209]: Sarah Farooq
+          - row "Zaira Raza Rizvi Xyra's Elements Disability $22K 5 Founder — Pending Usman Javed" [ref=e1210] [cursor=pointer]:
+            - cell "Zaira Raza Rizvi Xyra's Elements" [ref=e1211]:
+              - generic [ref=e1212]:
+                - generic [ref=e1213]: Zaira Raza Rizvi
+                - generic [ref=e1214]: Xyra's Elements
+            - cell "Disability" [ref=e1215]:
+              - generic [ref=e1216]: Disability
+            - cell "$22K" [ref=e1217]
+            - cell "5" [ref=e1218]
+            - cell "Founder" [ref=e1219]
+            - cell "—" [ref=e1220]
+            - cell "Pending" [ref=e1221]:
+              - generic [ref=e1222]: Pending
+            - cell "Usman Javed" [ref=e1223]:
+              - generic [ref=e1224]: Usman Javed
+          - row "Abdullah Bin Abbas Saving 9 Health $70K 21 Founder — Pending Usman Javed" [ref=e1225] [cursor=pointer]:
+            - cell "Abdullah Bin Abbas Saving 9" [ref=e1226]:
+              - generic [ref=e1227]:
+                - generic [ref=e1228]: Abdullah Bin Abbas
+                - generic [ref=e1229]: Saving 9
+            - cell "Health" [ref=e1230]:
+              - generic [ref=e1231]: Health
+            - cell "$70K" [ref=e1232]
+            - cell "21" [ref=e1233]
+            - cell "Founder" [ref=e1234]
+            - cell "—" [ref=e1235]
+            - cell "Pending" [ref=e1236]:
+              - generic [ref=e1237]: Pending
+            - cell "Usman Javed" [ref=e1238]:
+              - generic [ref=e1239]: Usman Javed
+          - row "Arslan Ayaz Trash Bee Environment $5K 7 Founder — Pending Haroon Yasin" [ref=e1240] [cursor=pointer]:
+            - cell "Arslan Ayaz Trash Bee" [ref=e1241]:
+              - generic [ref=e1242]:
+                - generic [ref=e1243]: Arslan Ayaz
+                - generic [ref=e1244]: Trash Bee
+            - cell "Environment" [ref=e1245]:
+              - generic [ref=e1246]: Environment
+            - cell "$5K" [ref=e1247]
+            - cell "7" [ref=e1248]
+            - cell "Founder" [ref=e1249]
+            - cell "—" [ref=e1250]
+            - cell "Pending" [ref=e1251]:
+              - generic [ref=e1252]: Pending
+            - cell "Haroon Yasin" [ref=e1253]:
+              - generic [ref=e1254]: Haroon Yasin
+          - row "Muhammad Waqas WonderTree Disability $110K 15 Founder — Pending Haroon Yasin" [ref=e1255] [cursor=pointer]:
+            - cell "Muhammad Waqas WonderTree" [ref=e1256]:
+              - generic [ref=e1257]:
+                - generic [ref=e1258]: Muhammad Waqas
+                - generic [ref=e1259]: WonderTree
+            - cell "Disability" [ref=e1260]:
+              - generic [ref=e1261]: Disability
+            - cell "$110K" [ref=e1262]
+            - cell "15" [ref=e1263]
+            - cell "Founder" [ref=e1264]
+            - cell "—" [ref=e1265]
+            - cell "Pending" [ref=e1266]:
+              - generic [ref=e1267]: Pending
+            - cell "Haroon Yasin" [ref=e1268]:
+              - generic [ref=e1269]: Haroon Yasin
+          - row "Muhammad Talha Rehman Be Me Mental Health $35K 6 Founder — Pending Sabeena Abbasi" [ref=e1270] [cursor=pointer]:
+            - cell "Muhammad Talha Rehman Be Me" [ref=e1271]:
+              - generic [ref=e1272]:
+                - generic [ref=e1273]: Muhammad Talha Rehman
+                - generic [ref=e1274]: Be Me
+            - cell "Mental Health" [ref=e1275]:
+              - generic [ref=e1276]: Mental Health
+            - cell "$35K" [ref=e1277]
+            - cell "6" [ref=e1278]
+            - cell "Founder" [ref=e1279]
+            - cell "—" [ref=e1280]
+            - cell "Pending" [ref=e1281]:
+              - generic [ref=e1282]: Pending
+            - cell "Sabeena Abbasi" [ref=e1283]:
+              - generic [ref=e1284]: Sabeena Abbasi
+          - row "Khushbakht Shah Jillani Mehfooz AI Women & Girls $7K 3 Founder — Pending Sabeena Abbasi" [ref=e1285] [cursor=pointer]:
+            - cell "Khushbakht Shah Jillani Mehfooz AI" [ref=e1286]:
+              - generic [ref=e1287]:
+                - generic [ref=e1288]: Khushbakht Shah Jillani
+                - generic [ref=e1289]: Mehfooz AI
+            - cell "Women & Girls" [ref=e1290]:
+              - generic [ref=e1291]: Women & Girls
+            - cell "$7K" [ref=e1292]
+            - cell "3" [ref=e1293]
+            - cell "Founder" [ref=e1294]
+            - cell "—" [ref=e1295]
+            - cell "Pending" [ref=e1296]:
+              - generic [ref=e1297]: Pending
+            - cell "Sabeena Abbasi" [ref=e1298]:
+              - generic [ref=e1299]: Sabeena Abbasi

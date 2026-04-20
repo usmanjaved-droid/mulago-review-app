@@ -1,0 +1,81 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: Mulago Scale-Up Fellowship 2026
+      - generic [ref=e5]: June 6–12 · Application Review System
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: "38"
+        - generic [ref=e9]: Total Apps
+      - generic [ref=e10]:
+        - generic [ref=e11]: "0"
+        - generic [ref=e12]: Shortlisted
+      - generic [ref=e13]:
+        - generic [ref=e14]: "0"
+        - generic [ref=e15]: Reviewed
+      - button "⚙ Reviewers" [ref=e16] [cursor=pointer]
+  - generic [ref=e17]:
+    - complementary [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: Progress
+        - generic [ref=e21]:
+          - generic [ref=e22]: "38"
+          - generic [ref=e23]: Pending review
+        - generic [ref=e24]:
+          - generic [ref=e25]: "0"
+          - generic [ref=e26]: Scored
+      - generic [ref=e27]:
+        - generic [ref=e28]: Filter by Status
+        - button "All 38" [ref=e29] [cursor=pointer]:
+          - text: All
+          - generic [ref=e30]: "38"
+        - button "Pending 38" [ref=e31] [cursor=pointer]:
+          - text: Pending
+          - generic [ref=e32]: "38"
+        - button "In Review 0" [ref=e33] [cursor=pointer]:
+          - text: In Review
+          - generic [ref=e34]: "0"
+        - button "★ Shortlisted 0" [ref=e35] [cursor=pointer]:
+          - text: ★ Shortlisted
+          - generic [ref=e36]: "0"
+        - button "✕ Rejected 0" [ref=e37] [cursor=pointer]:
+          - text: ✕ Rejected
+          - generic [ref=e38]: "0"
+      - generic [ref=e39]:
+        - generic [ref=e40]: Filter by Sector
+        - button "All Sectors" [ref=e41] [cursor=pointer]
+        - button "Education" [ref=e42] [cursor=pointer]
+        - button "Health" [ref=e43] [cursor=pointer]
+        - button "Mental Health" [ref=e44] [cursor=pointer]
+        - button "Livelihoods" [ref=e45] [cursor=pointer]
+        - button "Environment" [ref=e46] [cursor=pointer]
+        - button "Women & Girls" [ref=e47] [cursor=pointer]
+        - button "Tech & Innovation" [ref=e48] [cursor=pointer]
+        - button "Youth" [ref=e49] [cursor=pointer]
+        - button "Disability" [ref=e50] [cursor=pointer]
+    - main [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]: Applications
+        - generic [ref=e54]: Click any row to view full application and evaluate
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic: 🔍
+          - textbox "Search by name, org, sector…" [ref=e57]
+        - combobox [ref=e58] [cursor=pointer]:
+          - 'option "Sort: Date" [selected]'
+          - 'option "Sort: Name"'
+          - 'option "Sort: Organization"'
+          - 'option "Sort: Budget"'
+          - 'option "Sort: Score"'
+        - generic [ref=e59]: 38 results
+      - table [ref=e61]:
+        - rowgroup [ref=e62]:
+          - row "Applicant ↕ Sector ↕ Budget ↕ Team ↕ Stage Score Status" [ref=e63]:
+            - columnheader "Applicant ↕" [ref=e64] [cursor=pointer]
+            - columnheader "Sector ↕" [ref=e65] [cursor=pointer]
+            - columnheader "Budget ↕" [ref=e66] [cursor=pointer]
+            - columnheader "Team ↕" [ref=e67] [cursor=pointer]
+            - columnheader "Stage" [ref=e68] [cursor=pointer]
+            - columnheader "Score" [ref=e69] [cursor=pointer]
+            - columnheader "Status" [ref=e70] [cursor=pointer]
+        - rowgroup

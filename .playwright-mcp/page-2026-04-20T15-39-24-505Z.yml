@@ -1,0 +1,51 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: Summit Fellowship 2026
+      - generic [ref=e5]: Application Review System
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: "39"
+        - generic [ref=e9]: Total Apps
+      - generic [ref=e10]:
+        - generic [ref=e11]: "0"
+        - generic [ref=e12]: Shortlisted
+      - generic [ref=e13]:
+        - generic [ref=e14]: "0"
+        - generic [ref=e15]: Reviewed
+      - button "⚙ Reviewers" [ref=e16] [cursor=pointer]
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]: Applications
+      - generic [ref=e21]: Click any row to view full application and evaluate
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic: 🔍
+        - textbox "Search by name, org, sector…" [ref=e24]
+      - combobox [ref=e25] [cursor=pointer]:
+        - option "All Statuses" [selected]
+        - option "Pending"
+        - option "In Review"
+        - option "★ Shortlisted"
+        - option "✕ Rejected"
+      - combobox [ref=e26] [cursor=pointer]:
+        - option "All Sectors" [selected]
+        - option "Education"
+        - option "Health"
+        - option "Mental Health"
+        - option "Livelihoods"
+        - option "Environment"
+        - option "Women & Girls"
+        - option "Youth"
+        - option "Disability"
+      - generic [ref=e27]: 39 results
+    - table [ref=e29]:
+      - rowgroup [ref=e30]:
+        - row "Applicant ↕ Sector ↕ Budget ↕ Team ↕ Score Status" [ref=e31]:
+          - columnheader "Applicant ↕" [ref=e32] [cursor=pointer]
+          - columnheader "Sector ↕" [ref=e33] [cursor=pointer]
+          - columnheader "Budget ↕" [ref=e34] [cursor=pointer]
+          - columnheader "Team ↕" [ref=e35] [cursor=pointer]
+          - columnheader "Score" [ref=e36] [cursor=pointer]
+          - columnheader "Status" [ref=e37] [cursor=pointer]
+      - rowgroup

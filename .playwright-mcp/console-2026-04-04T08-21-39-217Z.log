@@ -1,0 +1,15 @@
+[    1920ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://usmanjaved-droid.github.io/favicon.ico:0
+[    2777ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/reviewers:0
+[    2996ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/reviewers:0
+[    9679ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[    9907ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   10110ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   10329ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   10549ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   10747ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   11033ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   11256ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   11455ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   11674ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   11900ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
+[   12099ms] [ERROR] Failed to load resource: the server responded with a status of 409 () @ https://wzvvylqxibsghpkmkfka.supabase.co/rest/v1/assignments:0
