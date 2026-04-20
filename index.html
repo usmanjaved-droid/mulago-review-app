@@ -2655,6 +2655,7 @@ async function loadFromDb() {
   if (evRes.data) evRes.data.forEach(r => { evals[r.applicant_id] = { status: r.status || 'pending', problem: r.problem || 0, solution: r.solution || 0, evidence: r.evidence || 0, scalability: r.scalability || 0, scalestrategy: r.scalestrategy || 0, recommendation: r.recommendation || '', notes: r.notes || '' }; });
   if (asRes.data) asRes.data.forEach(r => { assignments[r.applicant_id] = r.slot; });
   if (rvRes.data) rvRes.data.forEach(r => { reviewers[r.slot] = r; });
+  await initVotes();
 }
 
 // Subscribe to real-time changes
