@@ -3687,6 +3687,9 @@ function renderVotesSection(applicantId) {
 
   html += '</div>';
   votesSection.innerHTML = html;
+
+  // Render comments integrated into votes section
+  renderCommentsSection(applicantId);
 }
 
 function renderCommentsSection(applicantId) {
