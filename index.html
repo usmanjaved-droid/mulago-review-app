@@ -2714,6 +2714,28 @@ function subscribeRealtime() {
         }
       }
     })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'comments' }, payload => {
+      console.log('Comments change received:', payload);
+
+      const { new: newRow, old: oldRow } = payload;
+      const row = newRow || oldRow;
+
+      if (!COMMENTS[row.applicant_id]) {
+        COMMENTS[row.applicant_id] = {};
+      }
+
+      const key = `${row.reviewer_slot}_${row.vote}`;
+      COMMENTS[row.applicant_id][key] = newRow ? (newRow.comment_text || '') : '';
+
+      // Re-render comments section if a panel is open
+      const panelContent = document.getElementById('panel-content');
+      if (panelContent) {
+        const applicantId = panelContent.getAttribute('data-applicant-id');
+        if (applicantId) {
+          renderCommentsSection(applicantId);
+        }
+      }
+    })
     .subscribe();
 }
 
