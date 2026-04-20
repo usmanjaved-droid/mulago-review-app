@@ -3129,6 +3129,12 @@ function openPanel(id) {
   currentApplicant = a;
   broadcastPresence(a.org);
 
+  // Store applicant ID on panel-content for realtime reference
+  const panelContent = document.getElementById('panel-content');
+  if (panelContent) {
+    panelContent.setAttribute('data-applicant-id', id);
+  }
+
   document.getElementById('p-name').textContent = a.name;
   document.getElementById('p-role').textContent = a.title;
   document.getElementById('p-org').textContent = a.org;
@@ -3286,6 +3292,14 @@ function openPanel(id) {
     saveEvalToDb(id);
     renderTable();
   }
+
+  // Add votes section container
+  const panelEval = document.getElementById('panel-eval');
+  const votesContainer = document.createElement('div');
+  votesContainer.id = 'votes-section';
+  panelEval.appendChild(votesContainer);
+
+  renderVotesSection(id);
 
   document.getElementById('overlay').classList.add('open');
   document.getElementById('panel').classList.add('open');
