@@ -2605,6 +2605,9 @@ Metric 3: # of underserved individuals receiving mental health support through c
 // Global vote state: { applicant_id: { slot: 'yes'|'maybe'|'no'|null } }
 let VOTES = {};
 
+// Global comment state: { applicant_id: { slot_vote: comment_text } }
+let COMMENTS = {};
+
 // --- SUPABASE ---
 const SUPABASE_URL = 'https://wzvvylqxibsghpkmkfka.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6dnZ5bHF4aWJzZ2hwa21rZmthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMzE5MzMsImV4cCI6MjA5MDcwNzkzM30.DIm4eFeo5-G-6_kpd1Fuybex59E-s3KrmxeWJgMUw7U';
@@ -3533,6 +3536,32 @@ async function initVotes() {
     console.log('Loaded votes:', VOTES);
   } catch (err) {
     console.error('Error loading votes:', err.message);
+  }
+}
+
+async function initComments() {
+  try {
+    const { data, error } = await sb
+      .from('comments')
+      .select('applicant_id, reviewer_slot, vote, comment_text');
+
+    if (error) {
+      console.error('Error loading comments:', error);
+      return;
+    }
+
+    // Initialize COMMENTS structure
+    data.forEach(row => {
+      if (!COMMENTS[row.applicant_id]) {
+        COMMENTS[row.applicant_id] = {};
+      }
+      const key = `${row.reviewer_slot}_${row.vote}`;
+      COMMENTS[row.applicant_id][key] = row.comment_text || '';
+    });
+
+    console.log('Comments loaded:', COMMENTS);
+  } catch (err) {
+    console.error('Unexpected error in initComments:', err);
   }
 }
 
