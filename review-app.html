@@ -3543,6 +3543,64 @@ async function saveVoteToDb(applicantId, reviewerSlot, vote) {
   }
 }
 
+function renderVotesSection(applicantId) {
+  const votesSection = document.getElementById('votes-section');
+  if (!votesSection) return;
+
+  const currentSlot = CURRENT_REVIEWER_SLOT;
+  if (!currentSlot) return; // No reviewer selected
+
+  // Build reviewer rows
+  let html = '<div style="margin-top: 1.5rem;">';
+  html += '<div style="font-size: 0.75rem; color: var(--on-surface-variant); text-transform: uppercase; font-weight: 700; margin-bottom: 0.75rem;">Reviewer Votes</div>';
+
+  // Get all reviewers from REVIEWERS array
+  const reviewerRows = REVIEWERS.filter(r => r.name); // Only show if name is set
+
+  reviewerRows.forEach(reviewer => {
+    const isCurrentReviewer = reviewer.slot === currentSlot;
+    const voteValue = VOTES[applicantId] ? VOTES[applicantId][reviewer.slot] : null;
+    const reviewerName = isCurrentReviewer ? 'You' : reviewer.name;
+
+    html += '<div style="display: flex; align-items: center; justify-content: space-between; padding: 0.625rem; background: var(--surface-container-low); border-radius: 0.375rem; margin-bottom: 0.5rem;">';
+    html += `<div style="font-size: 0.875rem; font-weight: 600; color: var(--on-surface);">${reviewerName}</div>`;
+
+    if (isCurrentReviewer) {
+      // Current reviewer: show clickable buttons
+      html += '<div style="display: flex; gap: 0.375rem;">';
+      const votes = ['yes', 'maybe', 'no'];
+      const colors = { yes: '#4caf50', maybe: '#ff9800', no: '#f44336' };
+      const labels = { yes: 'Yes', maybe: 'Maybe', no: 'No' };
+
+      votes.forEach(v => {
+        const isActive = voteValue === v;
+        const bgColor = isActive ? colors[v] : 'white';
+        const textColor = isActive ? 'white' : colors[v];
+        const borderColor = colors[v];
+
+        html += `<button onclick="handleVoteClick('${applicantId}', ${reviewer.slot}, '${v}')" style="padding: 0.375rem 0.75rem; border: 1px solid ${borderColor}; background: ${bgColor}; color: ${textColor}; border-radius: 0.25rem; cursor: pointer; font-size: 0.75rem; font-weight: 600; flex: 1;">${labels[v]}</button>`;
+      });
+      html += '</div>';
+    } else {
+      // Other reviewers: show read-only vote display
+      if (voteValue) {
+        const colors = { yes: '#4caf50', maybe: '#ff9800', no: '#f44336' };
+        const labels = { yes: 'Yes', maybe: 'Maybe', no: 'No' };
+        const color = colors[voteValue];
+        const label = labels[voteValue];
+        html += `<div style="padding: 0.375rem 0.75rem; border-radius: 0.25rem; background: ${color}; color: white; font-size: 0.75rem; font-weight: 600;">${label}</div>`;
+      } else {
+        html += '<div style="padding: 0.375rem 0.75rem; color: var(--on-surface-variant); font-size: 0.75rem; font-weight: 600;">—</div>';
+      }
+    }
+
+    html += '</div>';
+  });
+
+  html += '</div>';
+  votesSection.innerHTML = html;
+}
+
 async function init() {
   await loadFromDb();
 
