@@ -3601,6 +3601,19 @@ function renderVotesSection(applicantId) {
   votesSection.innerHTML = html;
 }
 
+async function handleVoteClick(applicantId, reviewerSlot, vote) {
+  await saveVoteToDb(applicantId, reviewerSlot, vote);
+
+  // Update local state
+  if (!VOTES[applicantId]) {
+    VOTES[applicantId] = {};
+  }
+  VOTES[applicantId][reviewerSlot] = vote;
+
+  // Re-render votes section
+  renderVotesSection(applicantId);
+}
+
 async function init() {
   await loadFromDb();
 
