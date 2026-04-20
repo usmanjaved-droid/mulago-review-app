@@ -2692,6 +2692,24 @@ function subscribeRealtime() {
         renderReviewerFilterBtns();
       }
     })
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'votes' }, payload => {
+      // Update VOTES state
+      const { applicant_id, reviewer_slot, vote } = payload.new;
+      if (!VOTES[applicant_id]) {
+        VOTES[applicant_id] = {};
+      }
+      VOTES[applicant_id][reviewer_slot] = vote;
+      console.log('Vote updated:', applicant_id, reviewer_slot, vote);
+
+      // Re-render votes section if a panel is open
+      const panelContent = document.getElementById('panel-content');
+      if (panelContent) {
+        const currentApplicantId = panelContent.getAttribute('data-applicant-id');
+        if (currentApplicantId) {
+          renderVotesSection(currentApplicantId);
+        }
+      }
+    })
     .subscribe();
 }
 
