@@ -3568,8 +3568,8 @@ function renderVotesSection(applicantId) {
   let html = '<div style="margin-top: 1.5rem;">';
   html += '<div style="font-size: 0.75rem; color: var(--on-surface-variant); text-transform: uppercase; font-weight: 700; margin-bottom: 0.75rem;">Reviewer Votes</div>';
 
-  // Get all reviewers from REVIEWERS array
-  const reviewerRows = REVIEWERS.filter(r => r.name); // Only show if name is set
+  // Get all reviewers from reviewers object
+  const reviewerRows = Object.values(reviewers).filter(r => r.name); // Only show if name is set
 
   reviewerRows.forEach(reviewer => {
     const isCurrentReviewer = reviewer.slot === currentSlot;
