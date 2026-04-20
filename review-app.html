@@ -3480,6 +3480,29 @@ const DEFAULT_REVIEWERS = [
   { slot: 6, name: 'Nadir Shams' },
 ];
 
+async function initVotes() {
+  try {
+    const { data, error } = await supabase
+      .from('votes')
+      .select('*');
+
+    if (error) throw error;
+
+    // Build VOTES object: { applicant_id: { slot: vote } }
+    VOTES = {};
+    data.forEach(row => {
+      if (!VOTES[row.applicant_id]) {
+        VOTES[row.applicant_id] = {};
+      }
+      VOTES[row.applicant_id][row.reviewer_slot] = row.vote;
+    });
+
+    console.log('Loaded votes:', VOTES);
+  } catch (err) {
+    console.error('Error loading votes:', err.message);
+  }
+}
+
 async function init() {
   await loadFromDb();
 

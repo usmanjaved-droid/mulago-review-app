@@ -2602,6 +2602,9 @@ Metric 3: # of underserved individuals receiving mental health support through c
   }
 ];
 
+// Global vote state: { applicant_id: { slot: 'yes'|'maybe'|'no'|null } }
+let VOTES = {};
+
 // --- SUPABASE ---
 const SUPABASE_URL = 'https://wzvvylqxibsghpkmkfka.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6dnZ5bHF4aWJzZ2hwa21rZmthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMzE5MzMsImV4cCI6MjA5MDcwNzkzM30.DIm4eFeo5-G-6_kpd1Fuybex59E-s3KrmxeWJgMUw7U';
@@ -3476,6 +3479,29 @@ const DEFAULT_REVIEWERS = [
   { slot: 5, name: 'Sania Salman' },
   { slot: 6, name: 'Nadir Shams' },
 ];
+
+async function initVotes() {
+  try {
+    const { data, error } = await supabase
+      .from('votes')
+      .select('*');
+
+    if (error) throw error;
+
+    // Build VOTES object: { applicant_id: { slot: vote } }
+    VOTES = {};
+    data.forEach(row => {
+      if (!VOTES[row.applicant_id]) {
+        VOTES[row.applicant_id] = {};
+      }
+      VOTES[row.applicant_id][row.reviewer_slot] = row.vote;
+    });
+
+    console.log('Loaded votes:', VOTES);
+  } catch (err) {
+    console.error('Error loading votes:', err.message);
+  }
+}
 
 async function init() {
   await loadFromDb();
