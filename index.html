@@ -2659,6 +2659,7 @@ async function loadFromDb() {
   if (asRes.data) asRes.data.forEach(r => { assignments[r.applicant_id] = r.slot; });
   if (rvRes.data) rvRes.data.forEach(r => { reviewers[r.slot] = r; });
   await initVotes();
+  await initComments();
 }
 
 // Subscribe to real-time changes
