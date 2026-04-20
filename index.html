@@ -3504,6 +3504,27 @@ async function initVotes() {
   }
 }
 
+async function saveVoteToDb(applicantId, reviewerSlot, vote) {
+  try {
+    const { error } = await supabase
+      .from('votes')
+      .upsert({
+        applicant_id: applicantId,
+        reviewer_slot: reviewerSlot,
+        vote: vote,
+        updated_at: new Date().toISOString()
+      }, {
+        onConflict: 'applicant_id,reviewer_slot'
+      });
+
+    if (error) throw error;
+
+    console.log(`Saved vote for app ${applicantId}, slot ${reviewerSlot}: ${vote}`);
+  } catch (err) {
+    console.error('Error saving vote:', err.message);
+  }
+}
+
 async function init() {
   await loadFromDb();
 
