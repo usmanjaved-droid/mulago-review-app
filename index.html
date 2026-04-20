@@ -3645,6 +3645,9 @@ function renderVotesSection(applicantId) {
   const votesSection = document.getElementById('votes-section');
   if (!votesSection) return;
 
+  votesSection.setAttribute('data-votes-section', '');
+  votesSection.setAttribute('data-applicant-id', applicantId);
+
   const currentSlot = currentReviewer?.slot;
   if (!currentSlot) return; // No reviewer selected
 
