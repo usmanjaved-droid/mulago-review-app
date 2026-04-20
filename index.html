@@ -3721,9 +3721,11 @@ function renderCommentsSection(applicantId) {
   const votesSection = document.querySelector('[data-votes-section]');
   if (!votesSection) return;
 
+  // Remove existing comments UI if present
   const existingComments = votesSection.querySelectorAll('[data-comment-row]');
   existingComments.forEach(el => el.remove());
 
+  // Get all reviewers
   const reviewerList = Object.values(reviewers).filter(r => r && r.slot);
 
   reviewerList.forEach(reviewer => {
@@ -3731,6 +3733,7 @@ function renderCommentsSection(applicantId) {
     const currentVote = VOTES[applicantId]?.[slot];
     const isCurrentReviewer = currentReviewer && currentReviewer.slot === slot;
 
+    // Get all comments for this reviewer (all votes)
     const commentsByVote = {};
     ['yes', 'maybe', 'no'].forEach(v => {
       const key = `${slot}_${v}`;
@@ -3746,6 +3749,7 @@ function renderCommentsSection(applicantId) {
       border-top: 1px solid #e0e0e0;
     `;
 
+    // Current reviewer with current vote
     if (isCurrentReviewer && currentVote) {
       const label = document.createElement('div');
       label.style.cssText = 'font-size: 12px; color: #666; margin-bottom: 4px;';
@@ -3780,6 +3784,7 @@ function renderCommentsSection(applicantId) {
       commentRow.appendChild(label);
       commentRow.appendChild(textbox);
 
+      // Show previous comments if they exist and are different from current vote
       ['yes', 'maybe', 'no'].forEach(v => {
         if (v !== currentVote && commentsByVote[v]) {
           const prevLabel = document.createElement('div');
@@ -3817,6 +3822,7 @@ function renderCommentsSection(applicantId) {
         }
       });
     } else if (currentVote && commentsByVote[currentVote]) {
+      // Other reviewers: show current vote's comment (read-only)
       const commentDisplay = document.createElement('div');
       commentDisplay.style.cssText = `
         padding: 8px;
@@ -3828,6 +3834,7 @@ function renderCommentsSection(applicantId) {
       commentDisplay.textContent = commentsByVote[currentVote];
       commentRow.appendChild(commentDisplay);
 
+      // Show any previous comments (read-only)
       ['yes', 'maybe', 'no'].forEach(v => {
         if (v !== currentVote && commentsByVote[v]) {
           const prevLabel = document.createElement('div');
