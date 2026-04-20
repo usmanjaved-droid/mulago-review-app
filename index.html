@@ -3515,7 +3515,7 @@ const DEFAULT_REVIEWERS = [
 
 async function initVotes() {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sb
       .from('votes')
       .select('*');
 
@@ -3538,7 +3538,7 @@ async function initVotes() {
 
 async function saveVoteToDb(applicantId, reviewerSlot, vote) {
   try {
-    const { error } = await supabase
+    const { error } = await sb
       .from('votes')
       .upsert({
         applicant_id: applicantId,
