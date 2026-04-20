@@ -3561,7 +3561,7 @@ function renderVotesSection(applicantId) {
   const votesSection = document.getElementById('votes-section');
   if (!votesSection) return;
 
-  const currentSlot = CURRENT_REVIEWER_SLOT;
+  const currentSlot = currentReviewer?.slot;
   if (!currentSlot) return; // No reviewer selected
 
   // Build reviewer rows
