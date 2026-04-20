@@ -3587,6 +3587,38 @@ async function saveVoteToDb(applicantId, reviewerSlot, vote) {
   }
 }
 
+async function saveCommentToDb(applicantId, reviewerSlot, vote, commentText) {
+  try {
+    const { error } = await sb
+      .from('comments')
+      .upsert(
+        {
+          applicant_id: applicantId,
+          reviewer_slot: reviewerSlot,
+          vote: vote,
+          comment_text: commentText || null,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'applicant_id,reviewer_slot,vote' }
+      );
+
+    if (error) {
+      console.error('Error saving comment:', error);
+      return;
+    }
+
+    if (!COMMENTS[applicantId]) {
+      COMMENTS[applicantId] = {};
+    }
+    const key = `${reviewerSlot}_${vote}`;
+    COMMENTS[applicantId][key] = commentText || '';
+
+    console.log(`Comment saved for applicant ${applicantId}, slot ${reviewerSlot}, vote ${vote}`);
+  } catch (err) {
+    console.error('Unexpected error in saveCommentToDb:', err);
+  }
+}
+
 function renderVotesSection(applicantId) {
   const votesSection = document.getElementById('votes-section');
   if (!votesSection) return;
