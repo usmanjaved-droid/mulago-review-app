@@ -3689,6 +3689,144 @@ function renderVotesSection(applicantId) {
   votesSection.innerHTML = html;
 }
 
+function renderCommentsSection(applicantId) {
+  const votesSection = document.querySelector('[data-votes-section]');
+  if (!votesSection) return;
+
+  const existingComments = votesSection.querySelectorAll('[data-comment-row]');
+  existingComments.forEach(el => el.remove());
+
+  const reviewerList = Object.values(reviewers).filter(r => r && r.slot);
+
+  reviewerList.forEach(reviewer => {
+    const slot = reviewer.slot;
+    const currentVote = VOTES[applicantId]?.[slot];
+    const isCurrentReviewer = currentReviewer && currentReviewer.slot === slot;
+
+    const commentsByVote = {};
+    ['yes', 'maybe', 'no'].forEach(v => {
+      const key = `${slot}_${v}`;
+      if (COMMENTS[applicantId]?.[key]) {
+        commentsByVote[v] = COMMENTS[applicantId][key];
+      }
+    });
+
+    const commentRow = document.createElement('div');
+    commentRow.setAttribute('data-comment-row', slot);
+    commentRow.style.cssText = `
+      padding: 8px 0;
+      border-top: 1px solid #e0e0e0;
+    `;
+
+    if (isCurrentReviewer && currentVote) {
+      const label = document.createElement('div');
+      label.style.cssText = 'font-size: 12px; color: #666; margin-bottom: 4px;';
+      label.textContent = 'Add comment (optional)';
+
+      const textbox = document.createElement('textarea');
+      const key = `${slot}_${currentVote}`;
+      textbox.setAttribute('data-comment-textbox', `${applicantId}_${slot}_${currentVote}`);
+      textbox.value = COMMENTS[applicantId]?.[key] || '';
+      textbox.placeholder = 'Explain your vote...';
+      textbox.style.cssText = `
+        width: 100%;
+        min-height: 60px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 13px;
+        resize: vertical;
+      `;
+
+      textbox.addEventListener('blur', () => {
+        saveCommentToDb(applicantId, slot, currentVote, textbox.value.trim());
+      });
+
+      textbox.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'Enter') {
+          saveCommentToDb(applicantId, slot, currentVote, textbox.value.trim());
+        }
+      });
+
+      commentRow.appendChild(label);
+      commentRow.appendChild(textbox);
+
+      ['yes', 'maybe', 'no'].forEach(v => {
+        if (v !== currentVote && commentsByVote[v]) {
+          const prevLabel = document.createElement('div');
+          prevLabel.style.cssText = 'font-size: 11px; color: #999; margin-top: 12px; margin-bottom: 4px;';
+          prevLabel.textContent = `Previous vote: ${v} (editable)`;
+
+          const prevTextbox = document.createElement('textarea');
+          const prevKey = `${slot}_${v}`;
+          prevTextbox.setAttribute('data-comment-textbox', `${applicantId}_${slot}_${v}`);
+          prevTextbox.value = commentsByVote[v];
+          prevTextbox.style.cssText = `
+            width: 100%;
+            min-height: 60px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 13px;
+            resize: vertical;
+            background: #f9f9f9;
+          `;
+
+          prevTextbox.addEventListener('blur', () => {
+            saveCommentToDb(applicantId, slot, v, prevTextbox.value.trim());
+          });
+
+          prevTextbox.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+              saveCommentToDb(applicantId, slot, v, prevTextbox.value.trim());
+            }
+          });
+
+          commentRow.appendChild(prevLabel);
+          commentRow.appendChild(prevTextbox);
+        }
+      });
+    } else if (currentVote && commentsByVote[currentVote]) {
+      const commentDisplay = document.createElement('div');
+      commentDisplay.style.cssText = `
+        padding: 8px;
+        background: #f5f5f5;
+        border-radius: 4px;
+        font-size: 13px;
+        line-height: 1.4;
+      `;
+      commentDisplay.textContent = commentsByVote[currentVote];
+      commentRow.appendChild(commentDisplay);
+
+      ['yes', 'maybe', 'no'].forEach(v => {
+        if (v !== currentVote && commentsByVote[v]) {
+          const prevLabel = document.createElement('div');
+          prevLabel.style.cssText = 'font-size: 11px; color: #999; margin-top: 8px; margin-bottom: 4px;';
+          prevLabel.textContent = `Previous vote: ${v}`;
+
+          const prevDisplay = document.createElement('div');
+          prevDisplay.style.cssText = `
+            padding: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #666;
+          `;
+          prevDisplay.textContent = commentsByVote[v];
+
+          commentRow.appendChild(prevLabel);
+          commentRow.appendChild(prevDisplay);
+        }
+      });
+    }
+
+    votesSection.appendChild(commentRow);
+  });
+}
+
 async function handleVoteClick(applicantId, reviewerSlot, vote) {
   await saveVoteToDb(applicantId, reviewerSlot, vote);
 
