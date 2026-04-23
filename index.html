@@ -2803,6 +2803,14 @@ function sortBy(field) {
   renderTable();
 }
 
+function getVoteCounts(applicantId) {
+  const votes = VOTES[applicantId] || {};
+  const yes = Object.values(votes).filter(v => v === 'yes').length;
+  const maybe = Object.values(votes).filter(v => v === 'maybe').length;
+  const no = Object.values(votes).filter(v => v === 'no').length;
+  return { yes, maybe, no, total: yes + maybe + no };
+}
+
 function getFilteredSorted() {
   let list = APPLICANTS.slice();
 
