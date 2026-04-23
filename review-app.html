@@ -2804,10 +2804,10 @@ function sortBy(field) {
 }
 
 function getVoteCounts(applicantId) {
-  const votes = VOTES[applicantId] || {};
-  const yes = Object.values(votes).filter(v => v === 'yes').length;
-  const maybe = Object.values(votes).filter(v => v === 'maybe').length;
-  const no = Object.values(votes).filter(v => v === 'no').length;
+  const votes = Object.values(VOTES[applicantId] || {});
+  const yes = votes.filter(v => v === 'yes').length;
+  const maybe = votes.filter(v => v === 'maybe').length;
+  const no = votes.filter(v => v === 'no').length;
   return { yes, maybe, no, total: yes + maybe + no };
 }
 
@@ -3707,10 +3707,8 @@ function renderVotesSection(applicantId) {
   });
 
   // Add vote count tally
-  const appVotes = VOTES[applicantId] || {};
-  const yesCount = Object.values(appVotes).filter(v => v === 'yes').length;
-  const maybeCount = Object.values(appVotes).filter(v => v === 'maybe').length;
-  const noCount = Object.values(appVotes).filter(v => v === 'no').length;
+  const counts = getVoteCounts(applicantId);
+  const { yes: yesCount, maybe: maybeCount, no: noCount } = counts;
 
   html += '<div style="margin-top: 0.75rem; padding: 0.625rem; background: var(--surface-container); border-radius: 0.375rem; display: flex; justify-content: space-around; font-size: 0.75rem; font-weight: 600; color: var(--on-surface-variant);">';
   html += `<div style="text-align: center;"><div style="font-size: 0.9rem; font-weight: 700; color: #4caf50;">${yesCount}</div><div>Yes</div></div>`;
