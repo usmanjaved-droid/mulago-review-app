@@ -257,6 +257,20 @@
     border-radius: 10px; background: var(--secondary-container); color: var(--on-secondary-container);
     white-space: nowrap;
   }
+  /* Vote chips */
+  .vote-chips { display: inline-flex; gap: 4px; align-items: center; }
+  .vote-chip {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 0.675rem; font-weight: 700; padding: 2px 7px;
+    border-radius: 10px; white-space: nowrap;
+  }
+  .vote-chip-yes    { background: #e6f4ea; color: #1e6b35; }
+  .vote-chip-maybe  { background: #fff3cd; color: #7a5c00; }
+  .vote-chip-no     { background: #fce8e8; color: #7a2020; }
+  .vote-chip-dot    { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .vote-chip-yes   .vote-chip-dot { background: #2e7d4f; }
+  .vote-chip-maybe .vote-chip-dot { background: #b07d00; }
+  .vote-chip-no    .vote-chip-dot { background: #b03030; }
   .budget-text { font-size: 0.8125rem; color: var(--on-surface); font-variant-numeric: tabular-nums; }
   .team-text { font-size: 0.8125rem; color: var(--on-surface-variant); }
   .stage-text { font-size: 0.75rem; color: var(--on-surface-variant); max-width: 140px; }
@@ -721,7 +735,6 @@
             <th onclick="sortBy('name')">Applicant <span class="sort-icon">↕</span></th>
             <th onclick="sortBy('sector')">Sector <span class="sort-icon">↕</span></th>
             <th onclick="sortBy('budget')">Budget <span class="sort-icon">↕</span></th>
-            <th onclick="sortBy('team')">Team <span class="sort-icon">↕</span></th>
             <th>Score</th>
             <th>Votes</th>
             <th>Status</th>
@@ -2883,7 +2896,15 @@ function renderVotesCell(applicantId) {
   if (counts.total === 0) {
     return `<span style="font-size:0.75rem;color:var(--outline-variant);font-style:italic">—</span>`;
   }
-  return `<span style="font-size:0.75rem;color:var(--on-surface);font-weight:500">✓ ${counts.yes} | ⊙ ${counts.maybe} | ✗ ${counts.no}</span>`;
+  const chip = (type, label, n) =>
+    `<span class="vote-chip vote-chip-${type}" style="opacity:${n === 0 ? '0.35' : '1'}">
+      <span class="vote-chip-dot"></span>${n} ${label}
+    </span>`;
+  return `<div class="vote-chips">
+    ${chip('yes', 'Yes', counts.yes)}
+    ${chip('maybe', 'Maybe', counts.maybe)}
+    ${chip('no', 'No', counts.no)}
+  </div>`;
 }
 
 // --- RENDER TABLE ---
@@ -2934,7 +2955,6 @@ function renderTable() {
       </td>
       <td><span class="sector-tag sector-tag-${a.sector.toLowerCase().replace(/[^a-z]/g,'-')}">${a.sector}</span></td>
       <td><span class="budget-text">${budgetStr}</span></td>
-      <td><span class="team-text">${a.team}</span></td>
       <td>${scoreCell}</td>
       <td>${renderVotesCell(a.id)}</td>
       <td>${renderBadge(ev.status)}</td>
