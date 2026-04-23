@@ -2852,6 +2852,14 @@ function getFilteredSorted() {
   return list;
 }
 
+function renderVotesCell(applicantId) {
+  const counts = getVoteCounts(applicantId);
+  if (counts.total === 0) {
+    return `<span style="font-size:0.75rem;color:var(--outline-variant);font-style:italic">—</span>`;
+  }
+  return `<span style="font-size:0.75rem;color:var(--on-surface);font-weight:500">✓ ${counts.yes} | ⊙ ${counts.maybe} | ✗ ${counts.no}</span>`;
+}
+
 // --- RENDER TABLE ---
 function renderTable() {
   const list = getFilteredSorted();
