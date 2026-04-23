@@ -2838,14 +2838,33 @@ function getFilteredSorted() {
     );
   }
 
+  const statusPriority = { 'shortlisted': 0, 'review': 1, 'rejected': 2, 'pending': 3 };
+
   const sort = currentSort || 'name';
   list.sort((a, b) => {
+    const aStatus = getEval(a.id).status || 'pending';
+    const bStatus = getEval(b.id).status || 'pending';
+    const aPriority = statusPriority[aStatus] ?? 999;
+    const bPriority = statusPriority[bStatus] ?? 999;
+
+    // First, sort by status priority
+    if (aPriority !== bPriority) {
+      return aPriority - bPriority;
+    }
+
+    // Within same status, apply user's chosen sort
     if (sort === 'name') return a.name.localeCompare(b.name);
     if (sort === 'org') return a.org.localeCompare(b.org);
     if (sort === 'budget') return b.budget - a.budget;
     if (sort === 'score') return totalScore(b.id).total - totalScore(a.id).total;
     if (sort === 'sector') return a.sector.localeCompare(b.sector);
     if (sort === 'team') return b.team - a.team;
+
+    // Default sort: by votes (Yes desc, Maybe desc, then ID asc)
+    const aVotes = getVoteCounts(a.id);
+    const bVotes = getVoteCounts(b.id);
+    if (aVotes.yes !== bVotes.yes) return bVotes.yes - aVotes.yes;
+    if (aVotes.maybe !== bVotes.maybe) return bVotes.maybe - aVotes.maybe;
     return a.id - b.id;
   });
 
