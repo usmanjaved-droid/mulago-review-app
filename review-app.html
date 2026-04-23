@@ -2910,6 +2910,7 @@ function renderTable() {
       <td><span class="budget-text">${budgetStr}</span></td>
       <td><span class="team-text">${a.team}</span></td>
       <td>${scoreCell}</td>
+      <td>${renderVotesCell(a.id)}</td>
       <td>${renderBadge(ev.status)}</td>
       ${assignedCell}
     </tr>`;
